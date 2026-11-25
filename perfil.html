@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta y Perfil | Café para Siempre - Támesis</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2C1810;
+            --primary-dark: #160A05;
+            --accent: #D4A373;
+            --accent-hover: #C28F5F;
+            --store-orange: #FF9900;
+            --store-orange-hover: #E58600;
+            --green-leaf: #2D5A27;
+            --green-hover: #1E3F1A;
+            --bg-body: #F3F1EC;
+            --surface-card: #FFFFFF;
+            --surface-subtle: #F9F7F2;
+            --border-color: #E0D5C3;
+            --text-main: #1C1C1C;
+            --text-muted: #5E656D;
+            --white: #FFFFFF;
+            --danger: #C9182B;
+            --shadow-sm: 0 4px 12px rgba(44, 24, 16, 0.05);
+            --shadow-md: 0 12px 28px rgba(44, 24, 16, 0.09);
+            --shadow-lg: 0 24px 48px rgba(44, 24, 16, 0.16);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+        }
+
+        body.dark-mode {
+            --primary: #140B07;
+            --primary-dark: #090402;
+            --accent: #E2B485;
+            --store-orange: #F59E0B;
+            --store-orange-hover: #D97706;
+            --green-leaf: #4ADE80;
+            --green-hover: #22C55E;
+            --bg-body: #15100E;
+            --surface-card: #221A16;
+            --surface-subtle: #2D231E;
+            --border-color: #46372F;
+            --text-main: #F7F4EE;
+            --text-muted: #CFC3B8;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.32);
+            --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.45);
+            --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.58);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .ico {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            display: inline-block;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        header {
+            background: rgba(26, 14, 9, 0.98);
+            color: var(--white);
+            padding: 12px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 2px solid var(--store-orange);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .brand-link img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--store-orange);
+        }
+
+        .brand-title h1 {
+            font-size: 1.08rem;
+            font-weight: 800;
+        }
+
+        .brand-title span {
+            font-size: 0.7rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .header-btns {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-back-store {
+            background: var(--store-orange);
+            color: #160A05;
+            text-decoration: none;
+            padding: 9px 18px;
+            border-radius: 30px;
+            font-size: 0.84rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-back-store:hover {
+            background: var(--store-orange-hover);
+            color: var(--white);
+        }
+
+        .btn-ghost-light {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(212, 163, 115, 0.35);
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        main {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 20px 4% 80px;
+        }
+
+        .account-banner {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .account-cover {
+            height: 170px;
+            background-image:
+                linear-gradient(90deg, rgba(20, 10, 5, 0.82) 0%, rgba(20, 10, 5, 0.45) 55%, rgba(20, 10, 5, 0.72) 100%),
+                url("https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=1400&q=80");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 28px;
+            gap: 16px;
+        }
+
+        .cover-brand-title {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.5px;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.65);
+        }
+
+        .account-cover-tag {
+            background: rgba(22, 10, 5, 0.82);
+            color: var(--accent);
+            border: 1px solid rgba(212, 163, 115, 0.35);
+            padding: 6px 13px;
+            border-radius: 20px;
+            font-size: 0.74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .account-banner-body {
+            padding: 18px 28px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .account-user-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .avatar-ring {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            border: 3px solid var(--store-orange);
+            overflow: hidden;
+            background: var(--surface-subtle);
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+
+        .avatar-ring img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .account-identity h2 {
+            font-size: 1.55rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .account-identity p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .account-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .badge-pill {
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 4px 11px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* --- INDICADORES (PLAN INACTIVO + PEDIDOS + ESTADO SUSCRIPTOR) --- */
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(160px, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .kpi-strip {
+                grid-template-columns: 1fr;
+            }
+            .cover-brand-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .kpi-box {
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .kpi-box span {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .kpi-box strong {
+            font-size: 1.12rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-top: 4px;
+            display: block;
+        }
+
+        .kpi-box small {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: 3px;
+        }
+
+        .status-inactive {
+            color: var(--danger) !important;
+        }
+
+        .status-active {
+            color: var(--green-leaf) !important;
+        }
+
+        /* --- GRID PRINCIPAL DE MÓDULOS --- */
+        .store-profile-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 24px;
+            align-items: start;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 1020px) {
+            .store-profile-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card-panel {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .card-panel h3 {
+            font-size: 1.14rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-sub {
+            font-size: 0.83rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            line-height: 1.45;
+        }
+
+        .req-star {
+            color: var(--danger);
+            font-weight: 800;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .field-box {
+            margin-bottom: 14px;
+        }
+
+        .field-box.span-2 {
+            grid-column: 1 / -1;
+        }
+
+        .field-box label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .field-box input,
+        .field-box select,
+        .field-box textarea {
+            width: 100%;
+            padding: 10px 13px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-main);
+            font-size: 0.88rem;
+            outline: none;
+        }
+
+        .field-box input:focus,
+        .field-box select:focus,
+        .field-box textarea:focus {
+            border-color: var(--store-orange);
+        }
+
+        .avatar-presets {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0 16px;
+        }
+
+        .preset-btn {
+            border: 2px solid var(--border-color);
+            background: var(--surface-subtle);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            padding: 2px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .preset-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .btn-primary-store {
+            background: var(--store-orange);
+            color: #160A05;
+            border: none;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 800;
+            font-size: 0.88rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary-store:hover {
+            background: var(--store-orange-hover);
+            color: var(--white);
+        }
+
+        .btn-outline-store {
+            background: var(--surface-subtle);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.84rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .btn-danger-store {
+            background: rgba(201, 24, 43, 0.12);
+            color: var(--danger);
+            border: 1px solid rgba(201, 24, 43, 0.35);
+            padding: 10px 15px;
+            border-radius: var(--radius-sm);
+            font-weight: 800;
+            font-size: 0.84rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        /* --- SECCIÓN DE PLANES TIPO APP / JUEGO --- */
+        .plans-section {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 26px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .plans-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .plan-card {
+            background: var(--surface-subtle);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .plan-card.featured {
+            border-color: var(--store-orange);
+        }
+
+        .plan-card.current-plan {
+            border-color: var(--green-leaf);
+        }
+
+        .plan-tier-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(212, 163, 115, 0.22);
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .plan-card h4 {
+            font-size: 1.18rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .plan-price {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--green-leaf);
+            margin: 6px 0 10px;
+        }
+
+        .plan-price span {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .plan-benefits {
+            list-style: none;
+            font-size: 0.84rem;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .address-list-item {
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .default-tag {
+            background: rgba(45, 90, 39, 0.16);
+            color: var(--green-leaf);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            margin-left: 6px;
+        }
+
+        .order-row-card {
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .order-status-pill {
+            background: rgba(255, 153, 0, 0.18);
+            color: var(--store-orange);
+            font-size: 0.74rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .switch-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .switch-line:last-of-type {
+            border-bottom: none;
+        }
+
+        /* --- MODAL DE TARJETA PARA SUSCRIPCIÓN --- */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.68);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2500;
+            padding: 20px;
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--surface-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 460px;
+            padding: 26px;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-x {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .toast-box {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            background: #2D5A27;
+            color: var(--white);
+            padding: 12px 18px;
+            border-radius: var(--radius-sm);
+            font-size: 0.86rem;
+            font-weight: 700;
+            box-shadow: var(--shadow-lg);
+            z-index: 3000;
+            display: none;
+        }
+
+        .toast-box.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="tienda.html" class="brand-link">
+            <img id="header-avatar" src="https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg" alt="Café para Siempre">
+            <div class="brand-title">
+                <h1>Café para Siempre</h1>
+                <span>Centro de Cuenta • Finca La Sierra</span>
+            </div>
+        </a>
+
+        <div class="header-btns">
+            <button type="button" class="btn-ghost-light" onclick="toggleDarkMode()">
+                <svg class="ico" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <span id="txt-theme">Modo Oscuro</span>
+            </button>
+            <a href="tienda.html" class="btn-back-store">
+                <svg class="ico" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                Volver a la tienda
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ENCABEZADO DEL PERFIL -->
+        <section class="account-banner">
+            <div class="account-cover">
+                <span class="cover-brand-title">Café para Siempre</span>
+                <span class="account-cover-tag" id="cover-plan-tag">Plan Inactivo</span>
+            </div>
+            <div class="account-banner-body">
+                <div class="account-user-left">
+                    <div class="avatar-ring">
+                        <img id="hero-avatar" src="https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg" alt="Foto de perfil">
+                    </div>
+                    <div class="account-identity">
+                        <h2 id="hero-nombre">Cliente de Tienda</h2>
+                        <p id="hero-correo">cliente@cafeparasiempre.com</p>
+                        <div class="account-badges">
+                            <span class="badge-pill" id="hero-telefono-badge">Tel: Pendiente</span>
+                            <span class="badge-pill" id="hero-ciudad-badge">Ciudad: Támesis</span>
+                            <span class="badge-pill">Vereda La Alacena • Támesis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="tienda.html" class="btn-primary-store">
+                    Seguir comprando en la tienda
+                </a>
+            </div>
+        </section>
+
+        <!-- INDICADORES (SIN PUNTOS CASHBACK) -->
+        <section class="kpi-strip">
+            <div class="kpi-box">
+                <span>Estado del Plan de Suscriptor</span>
+                <strong id="kpi-plan-estado" class="status-inactive">Plan Inactivo</strong>
+                <small id="kpi-plan-detalle">Aún no estás suscrito a un plan de pago.</small>
+            </div>
+            <div class="kpi-box">
+                <span>Pedidos Realizados</span>
+                <strong id="kpi-pedidos">2 Pedidos</strong>
+                <small>Historial disponible en tu cuenta</small>
+            </div>
+            <div class="kpi-box">
+                <span>Suscripción Actual</span>
+                <strong id="kpi-plan-nombre">Sin plan de pago</strong>
+                <small id="kpi-plan-cobro">Puedes elegir un plan más abajo</small>
+            </div>
+        </section>
+
+        <div class="store-profile-grid">
+            <!-- COLUMNA IZQUIERDA: DATOS OBLIGATORIOS + FOTO -->
+            <div>
+                <section class="card-panel">
+                    <h3>
+                        <svg class="ico" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Datos de Contacto y Envío Obligatorios
+                    </h3>
+                    <p class="card-sub">Todos los campos marcados con <span class="req-star">*</span> son obligatorios para guardar tu perfil.</p>
+
+                    <form id="form-datos-obligatorios" onsubmit="guardarPerfilObligatorio(event)">
+                        <div class="form-grid">
+                            <div class="field-box">
+                                <label for="prof-nombre">Nombre completo <span class="req-star">*</span></label>
+                                <input type="text" id="prof-nombre" required placeholder="Ej. Samuel Escalante">
+                            </div>
+
+                            <div class="field-box">
+                                <label for="prof-correo">Correo electrónico <span class="req-star">*</span></label>
+                                <input type="email" id="prof-correo" required placeholder="correo@ejemplo.com">
+                            </div>
+
+                            <div class="field-box">
+                                <label for="prof-telefono">Número de celular / WhatsApp <span class="req-star">*</span></label>
+                                <input type="tel" id="prof-telefono" required minlength="7" placeholder="Ej. 3001234567">
+                            </div>
+
+                            <div class="field-box">
+                                <label for="prof-ciudad">Ciudad / Municipio <span class="req-star">*</span></label>
+                                <select id="prof-ciudad" required>
+                                    <option value="">Selecciona una ciudad</option>
+                                    <option value="Támesis">Támesis</option>
+                                    <option value="Medellín">Medellín</option>
+                                    <option value="Bogotá">Bogotá</option>
+                                    <option value="Cali">Cali</option>
+                                    <option value="Manizales">Manizales</option>
+                                    <option value="Pereira">Pereira</option>
+                                    <option value="Envigado">Envigado</option>
+                                    <option value="Sabaneta">Sabaneta</option>
+                                </select>
+                            </div>
+
+                            <div class="field-box span-2">
+                                <label for="prof-direccion">Dirección exacta, barrio o vereda <span class="req-star">*</span></label>
+                                <input type="text" id="prof-direccion" required minlength="5" placeholder="Ej. Vereda La Alacena / Calle o Carrera y número">
+                            </div>
+
+                            <div class="field-box">
+                                <label for="prof-entrega">Modalidad de entrega <span class="req-star">*</span></label>
+                                <select id="prof-entrega" required>
+                                    <option value="">Selecciona modalidad</option>
+                                    <option value="Domicilio a dirección">Domicilio a dirección</option>
+                                    <option value="Recogida acordada en Támesis">Recogida acordada en Támesis</option>
+                                    <option value="Envío nacional transportadora">Envío nacional transportadora</option>
+                                </select>
+                            </div>
+
+                            <div class="field-box">
+                                <label for="prof-pago">Método de pago preferido <span class="req-star">*</span></label>
+                                <select id="prof-pago" required>
+                                    <option value="">Selecciona método</option>
+                                    <option value="Nequi / Daviplata">Nequi / Daviplata</option>
+                                    <option value="PSE / Transferencia">PSE / Transferencia</option>
+                                    <option value="Tarjeta Débito / Crédito">Tarjeta Débito / Crédito</option>
+                                    <option value="Pago Contraentrega">Pago Contraentrega</option>
+                                </select>
+                            </div>
+
+                            <div class="field-box span-2">
+                                <label for="prof-referencia">Punto de referencia o instrucciones de entrega <span class="req-star">*</span></label>
+                                <input type="text" id="prof-referencia" required placeholder="Ej. Casa esquinera, portería o referencia cercana">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary-store">
+                            <svg class="ico" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                            Guardar Perfil Obligatorio
+                        </button>
+                    </form>
+                </section>
+
+                <section class="card-panel">
+                    <h3>
+                        <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        Foto de Perfil
+                    </h3>
+                    <p class="card-sub">Sube una imagen, pega un enlace o elige un avatar rápido. Se guarda al instante y aparece en la tienda.</p>
+
+                    <div class="field-box">
+                        <label for="input-foto-archivo">Subir foto desde tu equipo</label>
+                        <input type="file" id="input-foto-archivo" accept="image/*" onchange="cargarFotoArchivo(event)">
+                    </div>
+
+                    <div class="field-box">
+                        <label for="input-foto-url">O pegar URL de imagen</label>
+                        <input type="url" id="input-foto-url" placeholder="https://..." onchange="previsualizarUrl(this.value)">
+                    </div>
+
+                    <label style="display:block; font-size:0.82rem; font-weight:700;">Avatares rápidos</label>
+                    <div class="avatar-presets">
+                        <button type="button" class="preset-btn" onclick="elegirAvatar('https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg')">
+                            <img src="https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg" alt="Avatar 1">
+                        </button>
+                        <button type="button" class="preset-btn" onclick="elegirAvatar('https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=300&q=80')">
+                            <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=300&q=80" alt="Avatar 2">
+                        </button>
+                        <button type="button" class="preset-btn" onclick="elegirAvatar('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=300&q=80')">
+                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=300&q=80" alt="Avatar 3">
+                        </button>
+                    </div>
+
+                    <button type="button" class="btn-primary-store" onclick="guardarFotoEnTienda()">
+                        Guardar y Sincronizar Foto
+                    </button>
+                </section>
+            </div>
+
+            <!-- COLUMNA DERECHA: DIRECCIONES + PEDIDOS + CONFIGURACIÓN -->
+            <div>
+                <section class="card-panel">
+                    <h3>
+                        <svg class="ico" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Direcciones Guardadas para Entrega
+                    </h3>
+                    <p class="card-sub">Agrega otra dirección si envías a distintos lugares y selecciona cuál usar por defecto.</p>
+
+                    <div id="lista-direcciones-guardadas"></div>
+
+                    <form onsubmit="agregarDireccionExtra(event)" style="border-top:1px dashed var(--border-color); padding-top:14px; margin-top:10px;">
+                        <div class="form-grid">
+                            <div class="field-box">
+                                <label for="extra-etiqueta">Etiqueta <span class="req-star">*</span></label>
+                                <input type="text" id="extra-etiqueta" required placeholder="Ej. Casa / Oficina">
+                            </div>
+                            <div class="field-box">
+                                <label for="extra-tel">Teléfono de contacto <span class="req-star">*</span></label>
+                                <input type="tel" id="extra-tel" required minlength="7" placeholder="Ej. 3001234567">
+                            </div>
+                            <div class="field-box span-2">
+                                <label for="extra-dir">Dirección completa <span class="req-star">*</span></label>
+                                <input type="text" id="extra-dir" required minlength="5" placeholder="Calle, carrera, vereda o conjunto">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-outline-store">+ Agregar Dirección</button>
+                    </form>
+                </section>
+
+                <section class="card-panel">
+                    <h3>
+                        <svg class="ico" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        Historial Reciente de Pedidos
+                    </h3>
+                    <p class="card-sub">Consulta tus compras anteriores y vuelve a pedir en un clic.</p>
+
+                    <div class="order-row-card">
+                        <div>
+                            <strong style="font-size:0.9rem;">Pedido #CPS-2048 <span class="order-status-pill">Entregado</span></strong>
+                            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Borbón Rosado Honey (500g) • $31.500</div>
+                        </div>
+                        <a href="tienda.html" class="btn-outline-store">Comprar de nuevo</a>
+                    </div>
+
+                    <div class="order-row-card">
+                        <div>
+                            <strong style="font-size:0.9rem;">Pedido #CPS-2019 <span class="order-status-pill">Entregado</span></strong>
+                            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:2px;">Castillo Tradición (1000g) • $43.200</div>
+                        </div>
+                        <a href="tienda.html" class="btn-outline-store">Comprar de nuevo</a>
+                    </div>
+                </section>
+
+                <section class="card-panel" id="configuracion">
+                    <h3>
+                        <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+                        Configuración de Cuenta y Preferencias
+                    </h3>
+
+                    <div class="switch-line">
+                        <div>
+                            <strong>Modo Oscuro / Claro</strong>
+                            <small style="color:var(--text-muted); display:block;">Sincronizado con la tienda.</small>
+                        </div>
+                        <button type="button" class="btn-outline-store" onclick="toggleDarkMode()">Alternar Tema</button>
+                    </div>
+
+                    <div class="switch-line">
+                        <div>
+                            <strong>Avisos de descuentos y lotes</strong>
+                            <small style="color:var(--text-muted); display:block;">Recibe notificaciones de ofertas y cosechas.</small>
+                        </div>
+                        <input type="checkbox" id="cfg-alertas" checked style="width:18px; height:18px; accent-color:var(--store-orange);">
+                    </div>
+
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
+                        <button type="button" class="btn-outline-store" onclick="guardarAjustesCuenta()">Guardar Ajustes</button>
+                        <a href="login.html" class="btn-danger-store" onclick="cerrarSesion()">Cambiar Cuenta / Salir</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- PLANES DE SUSCRIPCIÓN ABAJO (GRATIS, NORMAL, PREMIUM) -->
+        <section class="plans-section" id="planes-suscripcion">
+            <div class="plans-header-row">
+                <div>
+                    <h3>Planes de Suscripción — Café para Siempre</h3>
+                    <p class="card-sub" style="margin-bottom:0;" id="texto-estado-suscripcion">
+                        Actualmente estás en <strong>Plan Gratis</strong>. Elige un plan de pago y registra tu tarjeta para suscribirte, o cancélalo cuando quieras.
+                    </p>
+                </div>
+                <button type="button" class="btn-danger-store" id="btn-cancelar-plan" style="display:none;" onclick="cancelarSuscripcion()">
+                    Cancelar Suscripción
+                </button>
+            </div>
+
+            <div class="plans-grid">
+                <!-- PLAN GRATIS -->
+                <article class="plan-card" id="card-plan-gratis">
+                    <div>
+                        <span class="plan-tier-badge">Básico</span>
+                        <h4>Plan Gratis</h4>
+                        <div class="plan-price">$0 <span>/ mes</span></div>
+                        <ul class="plan-benefits">
+                            <li>• Acceso a la tienda y catálogo completo</li>
+                            <li>• Compra individual sin cobro mensual</li>
+                            <li>• Sin tarjeta registrada</li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn-outline-store" style="justify-content:center;" onclick="activarPlanGratis()">
+                        Usar Plan Gratis
+                    </button>
+                </article>
+
+                <!-- PLAN NORMAL -->
+                <article class="plan-card" id="card-plan-normal">
+                    <div>
+                        <span class="plan-tier-badge">Suscriptor</span>
+                        <h4>Plan Normal</h4>
+                        <div class="plan-price">$14.900 <span>/ mes</span></div>
+                        <ul class="plan-benefits">
+                            <li>• 10% de descuento en lotes seleccionados</li>
+                            <li>• Acceso anticipado a ofertas de temporada</li>
+                            <li>• Cancelación libre en cualquier momento</li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn-primary-store" style="justify-content:center;" onclick="abrirModalTarjeta('Plan Normal', '$14.900 / mes')">
+                        Suscribirme al Plan Normal
+                    </button>
+                </article>
+
+                <!-- PLAN PREMIUM -->
+                <article class="plan-card featured" id="card-plan-premium">
+                    <div>
+                        <span class="plan-tier-badge" style="background:rgba(255,153,0,0.25);">Más Completo</span>
+                        <h4>Plan Premium</h4>
+                        <div class="plan-price">$24.900 <span>/ mes</span></div>
+                        <ul class="plan-benefits">
+                            <li>• 15% de descuento en toda la tienda</li>
+                            <li>• Prioridad en ediciones especiales y lotes de finca</li>
+                            <li>• Cancelación libre en cualquier momento</li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn-primary-store" style="justify-content:center;" onclick="abrirModalTarjeta('Plan Premium', '$24.900 / mes')">
+                        Suscribirme al Plan Premium
+                    </button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL DE TARJETA PARA SUSCRIBIRSE -->
+    <div class="modal-backdrop" id="modal-tarjeta">
+        <div class="modal-box">
+            <button type="button" class="modal-x" onclick="cerrarModalTarjeta()">&times;</button>
+            <h3 style="font-size:1.2rem; font-weight:800; margin-bottom:6px;">Suscribirme a <span id="modal-plan-nombre">Plan Normal</span></h3>
+            <p class="card-sub" style="margin-bottom:16px;">Cobro recurrente: <strong id="modal-plan-precio">$14.900 / mes</strong>. Podrás cancelar cuando desees.</p>
+
+            <form onsubmit="confirmarSuscripcionTarjeta(event)">
+                <div class="field-box">
+                    <label for="card-titular">Nombre en la tarjeta <span class="req-star">*</span></label>
+                    <input type="text" id="card-titular" required placeholder="Como aparece en la tarjeta">
+                </div>
+
+                <div class="field-box">
+                    <label for="card-numero">Número de tarjeta <span class="req-star">*</span></label>
+                    <input type="text" id="card-numero" required minlength="13" maxlength="19" placeholder="0000 0000 0000 0000">
+                </div>
+
+                <div class="form-grid">
+                    <div class="field-box">
+                        <label for="card-expira">Vencimiento (MM/AA) <span class="req-star">*</span></label>
+                        <input type="text" id="card-expira" required pattern="(0[1-9]|1[0-2])\/[0-9]{2}" placeholder="MM/AA">
+                    </div>
+                    <div class="field-box">
+                        <label for="card-cvv">CVV <span class="req-star">*</span></label>
+                        <input type="password" id="card-cvv" required minlength="3" maxlength="4" placeholder="123">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary-store" style="width:100%; justify-content:center; margin-top:6px;">
+                    Confirmar Tarjeta y Suscribirme
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast-box" id="toast-box">Guardado con éxito</div>
+
+    <script>
+        const FOTO_DEFAULT = "https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg";
+        let fotoActual = FOTO_DEFAULT;
+        let direcciones = [];
+        let planSeleccionadoModal = { nombre: "Plan Normal", precio: "$14.900 / mes" };
+
+        window.onload = function () {
+            if (localStorage.getItem("theme_mode") === "dark") {
+                document.body.classList.add("dark-mode");
+                document.getElementById("txt-theme").innerText = "Modo Claro";
+            }
+
+            const perfil = JSON.parse(localStorage.getItem("perfilMegaTiendaCPS") || "{}");
+            const usuarioActivo = localStorage.getItem("usuarioActivo") || "cliente@cafeparasiempre.com";
+            const nombreGuardado = localStorage.getItem("nombreCliente") || perfil.nombre || "";
+            const fotoGuardada = localStorage.getItem("fotoPerfilUsuario") || perfil.foto || FOTO_DEFAULT;
+
+            fotoActual = fotoGuardada;
+            aplicarFotoUI(fotoActual);
+
+            document.getElementById("prof-nombre").value = nombreGuardado;
+            document.getElementById("prof-correo").value = perfil.correo || (usuarioActivo.includes("@") ? usuarioActivo : "");
+            document.getElementById("prof-telefono").value = perfil.telefono || "";
+            document.getElementById("prof-ciudad").value = perfil.ciudad || "Támesis";
+            document.getElementById("prof-direccion").value = perfil.direccion || "";
+            document.getElementById("prof-entrega").value = perfil.entrega || "Domicilio a dirección";
+            document.getElementById("prof-pago").value = perfil.pago || "Nequi / Daviplata";
+            document.getElementById("prof-referencia").value = perfil.referencia || "";
+
+            if (typeof perfil.alertas === "boolean") document.getElementById("cfg-alertas").checked = perfil.alertas;
+
+            direcciones = Array.isArray(perfil.direcciones) && perfil.direcciones.length > 0
+                ? perfil.direcciones
+                : [
+                    {
+                        etiqueta: "Principal",
+                        telefono: perfil.telefono || "300 000 0000",
+                        direccion: perfil.direccion || "Vereda La Alacena, Támesis, Antioquia",
+                        predeterminada: true
+                    }
+                ];
+
+            actualizarCabecera(perfil);
+            renderizarDirecciones();
+            renderizarEstadoPlan(perfil.planActivo || null);
+        };
+
+        function mostrarToast(msg) {
+            const box = document.getElementById("toast-box");
+            box.innerText = msg;
+            box.classList.add("show");
+            setTimeout(() => box.classList.remove("show"), 2700);
+        }
+
+        function renderizarEstadoPlan(planActivo) {
+            const estadoEl = document.getElementById("kpi-plan-estado");
+            const detalleEl = document.getElementById("kpi-plan-detalle");
+            const nombreEl = document.getElementById("kpi-plan-nombre");
+            const cobroEl = document.getElementById("kpi-plan-cobro");
+            const tagPortada = document.getElementById("cover-plan-tag");
+            const btnCancelar = document.getElementById("btn-cancelar-plan");
+            const resumenSub = document.getElementById("texto-estado-suscripcion");
+
+            document.querySelectorAll(".plan-card").forEach((c) => c.classList.remove("current-plan"));
+
+            if (planActivo && planActivo.nombre) {
+                estadoEl.innerText = "Plan Activo";
+                estadoEl.className = "status-active";
+                detalleEl.innerText = "Suscripción activa con tarjeta registrada.";
+                nombreEl.innerText = planActivo.nombre;
+                cobroEl.innerText = `${planActivo.precio} • Tarjeta •••• ${planActivo.ultimos4 || "0000"}`;
+                tagPortada.innerText = planActivo.nombre;
+                btnCancelar.style.display = "inline-flex";
+                resumenSub.innerHTML = `Tienes activo <strong>${planActivo.nombre}</strong> (${planActivo.precio}). Puedes cambiar de plan o cancelar tu suscripción cuando quieras.`;
+
+                if (planActivo.nombre === "Plan Normal") {
+                    document.getElementById("card-plan-normal").classList.add("current-plan");
+                } else if (planActivo.nombre === "Plan Premium") {
+                    document.getElementById("card-plan-premium").classList.add("current-plan");
+                }
+            } else {
+                estadoEl.innerText = "Plan Inactivo";
+                estadoEl.className = "status-inactive";
+                detalleEl.innerText = "No estás en el plan de suscriptor.";
+                nombreEl.innerText = "Plan Gratis";
+                cobroEl.innerText = "Sin cobro mensual • Elige un plan abajo";
+                tagPortada.innerText = "Plan Inactivo";
+                btnCancelar.style.display = "none";
+                resumenSub.innerHTML = `Estado actual: <strong>Plan Inactivo</strong> (no estás suscrito a un plan de pago). Elige <strong>Plan Normal</strong> o <strong>Plan Premium</strong> abajo para suscribirte con tu tarjeta.`;
+                document.getElementById("card-plan-gratis").classList.add("current-plan");
+            }
+        }
+
+        function abrirModalTarjeta(nombrePlan, precioPlan) {
+            planSeleccionadoModal = { nombre: nombrePlan, precio: precioPlan };
+            document.getElementById("modal-plan-nombre").innerText = nombrePlan;
+            document.getElementById("modal-plan-precio").innerText = precioPlan;
+            const nombreActual = document.getElementById("prof-nombre").value.trim();
+            if (nombreActual) document.getElementById("card-titular").value = nombreActual;
+            document.getElementById("modal-tarjeta").classList.add("active");
+        }
+
+        function cerrarModalTarjeta() {
+            document.getElementById("modal-tarjeta").classList.remove("active");
+        }
+
+        function confirmarSuscripcionTarjeta(e) {
+            e.preventDefault();
+            const titular = document.getElementById("card-titular").value.trim();
+            const numLimpio = document.getElementById("card-numero").value.replace(/\s+/g, "");
+            const expira = document.getElementById("card-expira").value.trim();
+            const cvv = document.getElementById("card-cvv").value.trim();
+
+            if (!titular || numLimpio.length < 13 || !expira || cvv.length < 3) {
+                alert("Completa los datos de la tarjeta para suscribirte.");
+                return;
+            }
+
+            const planData = {
+                nombre: planSeleccionadoModal.nombre,
+                precio: planSeleccionadoModal.precio,
+                ultimos4: numLimpio.slice(-4)
+            };
+
+            const perfil = JSON.parse(localStorage.getItem("perfilMegaTiendaCPS") || "{}");
+            perfil.planActivo = planData;
+            localStorage.setItem("perfilMegaTiendaCPS", JSON.stringify(perfil));
+
+            renderizarEstadoPlan(planData);
+            cerrarModalTarjeta();
+            e.target.reset();
+            mostrarToast(`Suscripción activada: ${planData.nombre}`);
+        }
+
+        function activarPlanGratis() {
+            const perfil = JSON.parse(localStorage.getItem("perfilMegaTiendaCPS") || "{}");
+            perfil.planActivo = null;
+            localStorage.setItem("perfilMegaTiendaCPS", JSON.stringify(perfil));
+            renderizarEstadoPlan(null);
+            mostrarToast("Plan Gratis seleccionado • Plan de suscriptor inactivo");
+        }
+
+        function cancelarSuscripcion() {
+            const perfil = JSON.parse(localStorage.getItem("perfilMegaTiendaCPS") || "{}");
+            perfil.planActivo = null;
+            localStorage.setItem("perfilMegaTiendaCPS", JSON.stringify(perfil));
+            renderizarEstadoPlan(null);
+            mostrarToast("Suscripción cancelada. Volviste a Plan Gratis");
+        }
+
+        function aplicarFotoUI(src) {
+            document.getElementById("hero-avatar").src = src;
+            document.getElementById("header-avatar").src = src;
+        }
+
+        function actualizarCabecera(perfil) {
+            const nombre = perfil.nombre || localStorage.getItem("nombreCliente") || "Cliente de Tienda";
+            const correo = perfil.correo || "cliente@cafeparasiempre.com";
+            const tel = perfil.telefono || "Pendiente";
+            const ciudad = perfil.ciudad || "Támesis";
+
+            document.getElementById("hero-nombre").innerText = nombre;
+            document.getElementById("hero-correo").innerText = correo;
+            document.getElementById("hero-telefono-badge").innerText = `Tel: ${tel}`;
+            document.getElementById("hero-ciudad-badge").innerText = `Ciudad: ${ciudad}`;
+        }
+
+        function cargarFotoArchivo(e) {
+            const archivo = e.target.files && e.target.files[0];
+            if (!archivo) return;
+            const reader = new FileReader();
+            reader.onload = function (ev) {
+                fotoActual = ev.target.result;
+                aplicarFotoUI(fotoActual);
+                document.getElementById("input-foto-url").value = "";
+            };
+            reader.readAsDataURL(archivo);
+        }
+
+        function previsualizarUrl(url) {
+            const limpia = url.trim();
+            if (!limpia) return;
+            fotoActual = limpia;
+            aplicarFotoUI(fotoActual);
+        }
+
+        function elegirAvatar(url) {
+            fotoActual = url;
+            document.getElementById("input-foto-url").value = url;
+            aplicarFotoUI(fotoActual);
+        }
+
+        function guardarFotoEnTienda() {
+            localStorage.setItem("fotoPerfilUsuario", fotoActual);
+            const perfil = JSON.parse(localStorage.getItem("perfilMegaTiendaCPS") || "{}");
+            perfil.foto = fotoActual;
+            localStorage.setItem("perfilMegaTiendaCPS", JSON.stringify(perfil));
+            mostrarToast("Foto guardada y sincronizada con la tienda");
+        }
+
+        function guardarPerfilObligatorio(e) {
+            e.preventDefault();
+
+            const nombre = document.getElementById("prof-nombre").value.trim();
+            const correo = document.getElementById("prof-correo").value.trim();
+            const telefono = document.getElementById("prof-telefono").value.trim();
+            const ciudad = document.getElementById("prof-ciudad").value.trim();
+            const direccion = document.getElementById("prof-direccion").value.trim();
+            const entrega = document.getElementById("prof-entrega").value.trim();
+            const pago = document.getElementById("prof-pago").value.trim();
+            const referencia = document.getElementById("prof-referencia").value.trim();
+
+            if (!nombre || !correo || !telefono || !ciudad || !direccion || !entrega || !pago || !referencia) {
+                alert("Por favor completa todos los campos obligatorios marcados con *.");
+                return;
+            }
+
+            const actual = JSON.parse(localStorage.getItem("perfilMegaTiendaCPS") || "{}");
+            const perfilActualizado = {
+                ...actual,
+                nombre,
+                correo,
+                telefono,
+                ciudad,
+                direccion,
+                entrega,
+                pago,
+                referencia,
+                foto: fotoActual,
+                direcciones
+            };
+
+            localStorage.setItem("perfilMegaTiendaCPS", JSON.stringify(perfilActualizado));
+            localStorage.setItem("nombreCliente", nombre);
+            localStorage.setItem("usuarioActivo", correo);
+            localStorage.setItem("fotoPerfilUsuario", fotoActual);
+
+            actualizarCabecera(perfilActualizado);
+            mostrarToast("Datos obligatorios guardados correctamente");
+        }
+
+        function renderizarDirecciones() {
+            const cont = document.getElementById("lista-direcciones-guardadas");
+            cont.innerHTML = "";
+
+            direcciones.forEach((d, i) => {
+                const div = document.createElement("div");
+                div.className = "address-list-item";
+                div.innerHTML = `
+                    <div>
+                        <strong style="font-size:0.9rem;">${d.etiqueta} ${d.predeterminada ? '<span class="default-tag">Predeterminada</span>' : ''}</strong>
+                        <div style="font-size:0.82rem; color:var(--text-main); margin-top:3px;">${d.direccion}</div>
+                        <div style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">Tel: ${d.telefono}</div>
+                    </div>
+                    ${!d.predeterminada ? `<button type="button" class="btn-outline-store" onclick="marcarPredeterminada(${i})">Usar esta</button>` : ""}
+                `;
+                cont.appendChild(div);
+            });
+        }
+
+        function agregarDireccionExtra(e) {
+            e.preventDefault();
+            const etiqueta = document.getElementById("extra-etiqueta").value.trim();
+            const telefono = document.getElementById("extra-tel").value.trim();
+            const direccion = document.getElementById("extra-dir").value.trim();
+
+            if (!etiqueta || !telefono || !direccion) {
+                alert("Completa etiqueta, teléfono y dirección.");
+                return;
+            }
+
+            direcciones.push({
+                etiqueta,
+                telefono,
+                direccion,
+                predeterminada: false
+            });
+
+            const perfil = JSON.parse(localStorage.getItem("perfilMegaTiendaCPS") || "{}");
+            perfil.direcciones = direcciones;
+            localStorage.setItem("perfilMegaTiendaCPS", JSON.stringify(perfil));
+
+            renderizarDirecciones();
+            e.target.reset();
+            mostrarToast("Dirección añadida a tu libreta");
+        }
+
+        function marcarPredeterminada(idx) {
+            direcciones = direcciones.map((item, i) => ({
+                ...item,
+                predeterminada: i === idx
+            }));
+            document.getElementById("prof-direccion").value = direcciones[idx].direccion;
+            document.getElementById("prof-telefono").value = direcciones[idx].telefono;
+
+            const perfil = JSON.parse(localStorage.getItem("perfilMegaTiendaCPS") || "{}");
+            perfil.direcciones = direcciones;
+            perfil.direccion = direcciones[idx].direccion;
+            perfil.telefono = direcciones[idx].telefono;
+            localStorage.setItem("perfilMegaTiendaCPS", JSON.stringify(perfil));
+
+            renderizarDirecciones();
+            actualizarCabecera(perfil);
+            mostrarToast("Dirección predeterminada actualizada");
+        }
+
+        function guardarAjustesCuenta() {
+            const perfil = JSON.parse(localStorage.getItem("perfilMegaTiendaCPS") || "{}");
+            perfil.alertas = document.getElementById("cfg-alertas").checked;
+            localStorage.setItem("perfilMegaTiendaCPS", JSON.stringify(perfil));
+            mostrarToast("Ajustes guardados");
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            const isDark = document.body.classList.contains("dark-mode");
+            localStorage.setItem("theme_mode", isDark ? "dark" : "light");
+            document.getElementById("txt-theme").innerText = isDark ? "Modo Claro" : "Modo Oscuro";
+        }
+
+        function cerrarSesion() {
+            localStorage.removeItem("usuarioActivo");
+            localStorage.removeItem("rolUsuario");
+        }
+    </script>
+</body>
+</html>

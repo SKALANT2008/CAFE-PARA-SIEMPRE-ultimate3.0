@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café para Siempre - Támesis y Antioquia, Vereda La Alacena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #24120B;
+            --primary-dark: #140905;
+            --accent: #CFA072;
+            --accent-hover: #B88656;
+            --buy-orange: #FF9900;
+            --buy-orange-hover: #E58600;
+            --green-leaf: #2D5A27;
+            --green-hover: #1E3F1A;
+            --bg-light: #F5EFE4;
+            --bg-body: #F8F6F2;
+            --text-dark: #1C1917;
+            --text-muted: #66605A;
+            --white: #FFFFFF;
+            --border-color: #E4D9C6;
+            --danger: #C9182B;
+            --shadow-sm: 0 4px 14px rgba(36, 18, 11, 0.05);
+            --shadow-md: 0 12px 28px rgba(36, 18, 11, 0.09);
+            --shadow-lg: 0 22px 44px rgba(36, 18, 11, 0.14);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .ic {
+            width: 17px;
+            height: 17px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            display: inline-block;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        .ic-lg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* --- BARRA SUPERIOR --- */
+        .top-status-bar {
+            background: linear-gradient(90deg, #1E3F1A 0%, var(--green-leaf) 50%, #1E3F1A 100%);
+            color: var(--white);
+            font-size: 0.76rem;
+            text-align: center;
+            padding: 8px 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1300;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+            flex-wrap: wrap;
+        }
+
+        .top-bar-pill {
+            background: var(--buy-orange);
+            color: var(--primary-dark);
+            padding: 3px 11px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .top-bar-pill:hover {
+            background: var(--white);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 34px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(28, 14, 9, 0.96);
+            backdrop-filter: blur(14px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px 5%;
+            z-index: 1200;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+            border-bottom: 1px solid rgba(207, 160, 114, 0.24);
+            gap: 16px;
+        }
+
+        .logo {
+            color: var(--accent);
+            font-size: 1.38rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            letter-spacing: -0.4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.92);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.25s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .btn-login {
+            background-color: var(--accent);
+            color: var(--primary-dark) !important;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 14px rgba(207, 160, 114, 0.28);
+            transition: all 0.25s ease;
+        }
+
+        .btn-login:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* --- PORTADA / HERO --- */
+        .hero {
+            min-height: 90vh;
+            background:
+                radial-gradient(circle at 75% 30%, rgba(207, 160, 114, 0.14), transparent 45%),
+                linear-gradient(180deg, rgba(16, 8, 5, 0.72) 0%, rgba(16, 8, 5, 0.84) 100%),
+                url('https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 112px 24px 64px;
+            margin-top: 34px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 12px;
+            text-shadow: 0 6px 24px rgba(0, 0, 0, 0.65);
+            font-weight: 900;
+            letter-spacing: -1.4px;
+            line-height: 1.08;
+        }
+
+        @media (max-width: 720px) {
+            .hero h1 {
+                font-size: 2.45rem;
+            }
+        }
+
+        .hero .subtitle {
+            font-size: 1.12rem;
+            color: var(--accent);
+            margin-bottom: 18px;
+            font-weight: 700;
+            letter-spacing: 0.9px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero p {
+            font-size: 1.06rem;
+            max-width: 720px;
+            margin-bottom: 24px;
+            line-height: 1.72;
+            color: #EFEAE2;
+        }
+
+        .hero-sub-call {
+            background: rgba(20, 10, 6, 0.82);
+            border: 1px solid rgba(207, 160, 114, 0.38);
+            border-radius: 16px;
+            padding: 12px 22px;
+            margin-bottom: 28px;
+            max-width: 720px;
+            font-size: 0.9rem;
+            color: #F7F2EA;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .hero-sub-call a {
+            color: var(--buy-orange);
+            font-weight: 800;
+            text-decoration: underline;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-hero {
+            background-color: var(--green-leaf);
+            color: var(--white);
+            padding: 14px 28px;
+            border: none;
+            border-radius: 35px;
+            font-size: 0.98rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .btn-hero:hover {
+            background-color: var(--green-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-hero-simulador {
+            background-color: var(--accent);
+            color: var(--primary-dark);
+            padding: 14px 28px;
+            border-radius: 35px;
+            font-size: 0.98rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .btn-hero-simulador:hover {
+            background-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* --- LABORATORIO SENSORIAL --- */
+        .lab-section {
+            max-width: 1360px;
+            margin: 64px auto 0;
+            padding: 0 5%;
+        }
+
+        .lab-title-box {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .lab-title-box h2 {
+            font-size: 2.15rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 900;
+            letter-spacing: -0.6px;
+        }
+
+        .lab-title-box p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .mega-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .mega-tool-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            padding: 26px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mega-tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--green-leaf));
+        }
+
+        .mega-tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+        }
+
+        .mega-tool-card h3 {
+            color: var(--primary);
+            font-size: 1.14rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+        }
+
+        .tool-icon-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--bg-light);
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .mega-tool-card p {
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            line-height: 1.56;
+        }
+
+        .tool-form-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tool-form-group select,
+        .tool-form-group input {
+            flex: 1;
+            min-width: 135px;
+            padding: 11px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            font-size: 0.88rem;
+            outline: none;
+            background: var(--bg-body);
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .btn-tool-action {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 11px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.86rem;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-tool-action:hover {
+            background: var(--green-leaf);
+            transform: translateY(-1px);
+        }
+
+        .tool-output-panel {
+            background: var(--bg-light);
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            border-left: 4px solid var(--green-leaf);
+            min-height: 62px;
+            color: var(--primary);
+            line-height: 1.5;
+            margin-top: 8px;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .tool-mini-link {
+            color: var(--green-hover);
+            font-weight: 800;
+            text-decoration: underline;
+            font-size: 0.82rem;
+            width: fit-content;
+        }
+
+        /* --- SECCIÓN CATÁLOGO --- */
+        .section-catalogo {
+            padding: 72px 5% 24px;
+            max-width: 1360px;
+            margin: 0 auto;
+        }
+
+        .catalogo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 18px;
+            background: var(--white);
+            padding: 22px 28px;
+            border-radius: 18px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .catalogo-header h2 {
+            color: var(--primary);
+            font-size: 1.9rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            flex-wrap: wrap;
+        }
+
+        .contador-badge {
+            background-color: var(--green-leaf);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 25px;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .grid-matriz {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(305px, 1fr));
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .item-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .item-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .bolsa-container {
+            height: 220px;
+            background: radial-gradient(circle at center, #3D2317 0%, #140A06 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 18px;
+        }
+
+        .bolsa-fisica {
+            width: 142px;
+            height: 180px;
+            background: linear-gradient(145deg, #4C2C1D 0%, #22120B 100%);
+            border-radius: 8px 8px 15px 15px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.58), inset 0 2px 5px rgba(255, 255, 255, 0.14);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 9px;
+            position: relative;
+            border: 1px solid rgba(207, 160, 114, 0.42);
+            transition: transform 0.3s ease;
+        }
+
+        .item-card:hover .bolsa-fisica {
+            transform: scale(1.04);
+        }
+
+        .bolsa-valvula {
+            width: 13px;
+            height: 13px;
+            background: #0A0301;
+            border-radius: 50%;
+            border: 1.5px solid var(--accent);
+            position: absolute;
+            top: 13px;
+        }
+
+        .bolsa-etiqueta-real {
+            background: #FDFBF7;
+            width: 100%;
+            padding: 9px 6px;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+        }
+
+        .bolsa-etiqueta-real .etiqueta-brand {
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border-bottom: 1.5px solid var(--accent);
+            padding-bottom: 2px;
+            margin-bottom: 3px;
+        }
+
+        .bolsa-etiqueta-real .etiqueta-variedad {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--green-leaf);
+        }
+
+        .bolsa-etiqueta-real .etiqueta-proceso {
+            font-size: 0.54rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .badge-id {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(0, 0, 0, 0.76);
+            color: var(--white);
+            font-size: 0.74rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        .badge-peso {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: var(--green-leaf);
+            color: var(--white);
+            font-size: 0.74rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 800;
+        }
+
+        .item-body {
+            padding: 20px 22px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .item-title {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .molienda-box {
+            margin-bottom: 14px;
+        }
+
+        .molienda-box label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 5px;
+        }
+
+        .molienda-box select {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 0.84rem;
+            background: var(--bg-body);
+            color: var(--text-dark);
+            outline: none;
+            font-weight: 500;
+        }
+
+        .item-specs {
+            font-size: 0.84rem;
+            color: #555;
+            margin-bottom: 12px;
+            line-height: 1.55;
+        }
+
+        .item-specs div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            border-bottom: 1px dashed #ECE6DC;
+            padding-bottom: 4px;
+        }
+
+        .item-specs span:first-child {
+            color: #777;
+            font-weight: 500;
+        }
+
+        .item-specs span:last-child {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            padding-top: 12px;
+            border-top: 1px solid #F0ECE4;
+        }
+
+        .precio-tag {
+            font-size: 1.28rem;
+            font-weight: 900;
+            color: var(--green-leaf);
+        }
+
+        .stock-tag {
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--danger);
+            background-color: #FFE8E8;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .btn-detalle {
+            padding: 11px 10px;
+            background-color: var(--bg-light);
+            color: var(--primary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.84rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-detalle:hover {
+            border-color: var(--primary);
+            background: var(--white);
+        }
+
+        .btn-accion {
+            padding: 11px 12px;
+            background-color: var(--buy-orange);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.86rem;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+        }
+
+        .btn-accion:hover {
+            background-color: var(--buy-orange-hover);
+            color: var(--white);
+        }
+
+        .paginacion-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 42px;
+        }
+
+        .page-btn {
+            width: 42px;
+            height: 42px;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .page-btn.active,
+        .page-btn:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* --- MODAL DE DETALLES DEL PRODUCTO --- */
+        .detail-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(16, 8, 5, 0.72);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 2000;
+        }
+
+        .detail-modal-backdrop.open {
+            display: flex;
+        }
+
+        .detail-modal-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            width: 100%;
+            max-width: 520px;
+            padding: 28px;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .detail-close-btn {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            background: var(--bg-light);
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            color: var(--primary);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail-spec-box {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 16px;
+            margin: 16px 0;
+            font-size: 0.88rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 16px;
+        }
+
+        /* --- SECCIÓN HISTORIA Y SUSCRIPCIÓN --- */
+        .historia-section {
+            background-color: var(--white);
+            padding: 80px 8%;
+            margin-top: 64px;
+            border-top: 3px solid var(--accent);
+        }
+
+        .historia-container {
+            max-width: 1040px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .historia-container h2 {
+            font-size: 2.25rem;
+            color: var(--primary);
+            margin-bottom: 18px;
+            font-weight: 900;
+            letter-spacing: -0.6px;
+        }
+
+        .historia-container > p {
+            font-size: 1.02rem;
+            color: #524C46;
+            line-height: 1.85;
+            margin-bottom: 28px;
+            text-align: justify;
+        }
+
+        .sub-highlight-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #3A1F14 100%);
+            color: var(--white);
+            border-radius: 18px;
+            padding: 24px 28px;
+            margin-bottom: 34px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            text-align: left;
+            box-shadow: var(--shadow-md);
+        }
+
+        .sub-highlight-box h3 {
+            font-size: 1.18rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sub-highlight-box p {
+            font-size: 0.9rem;
+            color: #EFEAE2;
+            margin: 0;
+            max-width: 620px;
+        }
+
+        .historia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+            text-align: left;
+            align-items: stretch;
+        }
+
+        .historia-card {
+            background: var(--bg-body);
+            padding: 26px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--green-leaf);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .historia-card h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+        }
+
+        .historia-card h3 .ic {
+            color: var(--green-leaf);
+        }
+
+        .historia-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- WIDGET ASISTENTE IA --- */
+        .ai-assistant-wrapper {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 1500;
+        }
+
+        .ai-fab-btn {
+            width: 62px;
+            height: 62px;
+            background: linear-gradient(135deg, var(--primary) 0%, #4A2B1D 100%);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--accent);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .ai-fab-btn:hover {
+            transform: scale(1.07);
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        .ai-fab-btn::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 13px;
+            height: 13px;
+            background-color: #2ECC71;
+            border: 2px solid var(--white);
+            border-radius: 50%;
+        }
+
+        .ai-chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 380px;
+            max-width: calc(100vw - 32px);
+            height: 510px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            display: none;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .ai-chat-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .ai-header-info {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .ai-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 0.92rem;
+        }
+
+        .ai-header-text h4 {
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .ai-header-text span {
+            font-size: 0.72rem;
+            color: #D6D3D1;
+        }
+
+        .ai-close-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            padding: 18px;
+            overflow-y: auto;
+            background: #FDFBF7;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ai-msg {
+            max-width: 85%;
+            padding: 11px 15px;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .ai-msg.bot {
+            background: var(--white);
+            color: var(--text-dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 3px;
+            border: 1px solid var(--border-color);
+        }
+
+        .ai-msg.user {
+            background: var(--primary);
+            color: var(--white);
+            align-self: flex-end;
+            border-bottom-right-radius: 3px;
+        }
+
+        .ai-quick-chips {
+            display: flex;
+            gap: 8px;
+            padding: 8px 14px;
+            background: var(--white);
+            overflow-x: auto;
+            border-top: 1px solid #EEE;
+        }
+
+        .chip {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .chip:hover {
+            background: var(--accent);
+            color: var(--primary-dark);
+        }
+
+        .ai-chat-input-area {
+            padding: 12px 14px;
+            background: var(--white);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 9px;
+            align-items: center;
+        }
+
+        .ai-chat-input-area input {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 25px;
+            border: 1px solid var(--border-color);
+            outline: none;
+            font-size: 0.85rem;
+            background: var(--bg-body);
+        }
+
+        .ai-send-btn {
+            background: var(--green-leaf);
+            color: var(--white);
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ai-send-btn:hover {
+            background: var(--green-hover);
+        }
+
+        footer {
+            background-color: var(--primary-dark);
+            color: #A8A29E;
+            padding: 44px 5%;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(207, 160, 114, 0.22);
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-status-bar">
+        <span>
+            <svg class="ic" viewBox="0 0 24 24"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m17.66 6.34 1.41-1.41"/><path d="M12 8a4 4 0 1 0 4 4"/><path d="M2 16h13a4 4 0 0 1 0 8H7"/></svg>
+            Finca La Sierra (1,900 m.s.n.m.) • 21°C
+        </span>
+        <span>•</span>
+        <span>
+            <svg class="ic" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Compromiso Cero Intermediarios
+        </span>
+        <span>•</span>
+        <span>
+            <svg class="ic" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            Lote Activo: Anaeróbico Honey
+        </span>
+        <a href="login.html" class="top-bar-pill">Reservar o Suscribirme</a>
+    </div>
+
+    <header>
+        <a href="index.html" class="logo">
+            <svg class="ic ic-lg" viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+            Café para Siempre
+        </a>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#laboratorio">Laboratorio Sensorial</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#historia">Nuestra Finca</a>
+            <a href="simulador.html" style="color: var(--accent); font-weight: 800;">
+                <svg class="ic" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                Juego Interactivo
+            </a>
+            <a href="login.html" class="btn-login">
+                <svg class="ic" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Iniciar Sesión
+            </a>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <h1>Café para Siempre</h1>
+        <div class="subtitle">
+            <svg class="ic" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Támesis y Antioquia, Vereda La Alacena
+        </div>
+        <p>Tradición, pasión y la riqueza de las tierras tamesinas en cada taza. Ecosistema digital que conecta la cosecha de la finca directamente con tu hogar bajo estándares de especialidad.</p>
+
+        <div class="hero-sub-call">
+            <svg class="ic" style="color: var(--buy-orange);" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <span>¿Quieres que nunca te falte café en casa? Conoce nuestro plan mensual y <a href="#historia">suscríbete fácil</a> o <a href="login.html">entra a tu cuenta para comprar</a>.</span>
+        </div>
+
+        <div class="hero-buttons">
+            <a href="#catalogo" class="btn-hero">
+                <svg class="ic" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                Explorar Catálogo Global
+            </a>
+            <a href="simulador.html" class="btn-hero-simulador">
+                <svg class="ic" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                Juego Interactivo
+            </a>
+        </div>
+    </section>
+
+    <section class="lab-section" id="laboratorio">
+        <div class="lab-title-box">
+            <h2>Laboratorio Sensorial &amp; Herramientas de Precisión</h2>
+            <p>Herramientas interactivas para elegir maridajes, calcular tu consumo mensual, definir tu compra y rastrear lotes.</p>
+        </div>
+
+        <div class="mega-tools-grid">
+            <div class="mega-tool-card">
+                <div>
+                    <h3>
+                        <span class="tool-icon-badge">
+                            <svg class="ic" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+                        </span>
+                        ¿Con qué acompañar tu café?
+                    </h3>
+                    <p>Selecciona tu antojo o comida y descubre con cuál café de la finca combina mejor:</p>
+                    <div class="tool-form-group">
+                        <select id="sel-comida">
+                            <option value="arepa-queso">Arepa con quesito</option>
+                            <option value="arepa-huevo">Arepa con huevo</option>
+                            <option value="arepa-chocolo">Arepa de chócolo con queso</option>
+                            <option value="buñuelo-pandequeso">Buñuelo o pandequeso</option>
+                            <option value="parva-dulce">Parva dulce</option>
+                            <option value="torta-chocolate">Torta de chocolate casera</option>
+                        </select>
+                        <button type="button" class="btn-tool-action" onclick="recomendarMaridaje()">Ver combinación</button>
+                    </div>
+                </div>
+                <div class="tool-output-panel" id="out-maridaje">
+                    <span>Elige tu antojo y descubre el café de la finca ideal para acompañarlo.</span>
+                    <a href="login.html" class="tool-mini-link">Ir a comprar o reservar</a>
+                </div>
+            </div>
+
+            <div class="mega-tool-card">
+                <div>
+                    <h3>
+                        <span class="tool-icon-badge">
+                            <svg class="ic" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+                        </span>
+                        Calculadora de Consumo (Tazas a Bolsas)
+                    </h3>
+                    <p>Ingresa cuántas tazas de café tomas al día y calcularemos cuántas bolsas de 500g necesitas al mes:</p>
+                    <div class="tool-form-group">
+                        <input type="number" id="inp-tazas" min="1" max="30" value="2" placeholder="Tazas al día">
+                        <button type="button" class="btn-tool-action" onclick="calcularBolsasMes()">Calcular</button>
+                    </div>
+                </div>
+                <div class="tool-output-panel" id="out-calculadora">
+                    <span>Calculando consumo mensual basado en rendimiento estándar...</span>
+                    <a href="login.html" class="tool-mini-link">Asegurar mi pedido mensual</a>
+                </div>
+            </div>
+
+            <div class="mega-tool-card">
+                <div>
+                    <h3>
+                        <span class="tool-icon-badge">
+                            <svg class="ic" viewBox="0 0 24 24"><path d="M3 5v14"/><path d="M8 5v14"/><path d="M12 5v14"/><path d="M17 5v14"/><path d="M21 5v14"/></svg>
+                        </span>
+                        Rastreador de Lote (Batch ID)
+                    </h3>
+                    <p>Ingresa el código de la bolsa (Ej: CPS-001) para consultar finca, altitud y tueste:</p>
+                    <div class="tool-form-group">
+                        <input type="text" id="inp-lote" placeholder="Ej. CPS-001">
+                        <button type="button" class="btn-tool-action" onclick="rastrearLoteFinca()">Rastrear</button>
+                    </div>
+                </div>
+                <div class="tool-output-panel" id="out-lote">
+                    <span>Escribe un código de producto para verificar su lote y fecha de tueste.</span>
+                    <a href="#catalogo" class="tool-mini-link">Ver códigos en catálogo</a>
+                </div>
+            </div>
+
+            <div class="mega-tool-card">
+                <div>
+                    <h3>
+                        <span class="tool-icon-badge">
+                            <svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                        </span>
+                        Asesor Exprés de Compra
+                    </h3>
+                    <p>Elige para qué buscas el café hoy y te indicamos cuál presentación conviene más:</p>
+                    <div class="tool-form-group">
+                        <select id="sel-objetivo">
+                            <option value="hogar">Consumo diario en casa</option>
+                            <option value="regalo">Regalo especial o detalle</option>
+                            <option value="filtro">Preparación en filtro / V60</option>
+                            <option value="suscripcion">Abastecimiento continuo</option>
+                        </select>
+                        <button type="button" class="btn-tool-action" onclick="recomendarCompra()">Elegir</button>
+                    </div>
+                </div>
+                <div class="tool-output-panel" id="out-compra">
+                    <span>Selecciona tu objetivo para ver una sugerencia directa de compra.</span>
+                    <a href="login.html" class="tool-mini-link">Comprar ahora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-catalogo" id="catalogo">
+        <div class="catalogo-header">
+            <h2>
+                <svg class="ic ic-lg" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                Catálogo Global de Cafés
+                <span class="contador-badge" id="total-registros">18 Productos</span>
+            </h2>
+            <div style="font-size: 0.92rem; color: var(--text-muted); font-weight: 600;">
+                Mostrando <b id="rango-pag">1 - 9</b> de 18 bolsas registradas
+            </div>
+        </div>
+
+        <div class="grid-matriz" id="contenedor-matriz"></div>
+
+        <div class="paginacion-wrapper" id="paginacion-bar">
+            <button type="button" class="page-btn active" onclick="cargarPagina(1)">1</button>
+            <button type="button" class="page-btn" onclick="cargarPagina(2)">2</button>
+        </div>
+    </section>
+
+    <div class="detail-modal-backdrop" id="modal-detalle" onclick="if(event.target===this) cerrarDetalle()">
+        <div class="detail-modal-card">
+            <button type="button" class="detail-close-btn" onclick="cerrarDetalle()" aria-label="Cerrar detalle">
+                <svg class="ic" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <span id="det-id" style="font-size:0.78rem; font-weight:800; color:var(--green-leaf);">CPS-001</span>
+            <h3 id="det-nombre" style="font-size:1.35rem; font-weight:900; color:var(--primary); margin-top:4px;">Bolsa Borbón Rosado</h3>
+            <p id="det-desc" style="font-size:0.88rem; color:var(--text-muted); margin-top:6px; line-height:1.55;">Lote seleccionado de la finca con trazabilidad y opciones de molienda.</p>
+
+            <div class="detail-spec-box">
+                <div><strong style="color:var(--text-muted); font-size:0.76rem; display:block;">VARIEDAD</strong><span id="det-variedad" style="font-weight:700;">-</span></div>
+                <div><strong style="color:var(--text-muted); font-size:0.76rem; display:block;">PROCESO</strong><span id="det-proceso" style="font-weight:700;">-</span></div>
+                <div><strong style="color:var(--text-muted); font-size:0.76rem; display:block;">FERMENTACIÓN</strong><span id="det-ferm" style="font-weight:700;">-</span></div>
+                <div><strong style="color:var(--text-muted); font-size:0.76rem; display:block;">TUESTE / PESO</strong><span id="det-tueste" style="font-weight:700;">-</span></div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+                <div>
+                    <span style="font-size:0.78rem; color:var(--text-muted); display:block;">Precio de referencia</span>
+                    <strong id="det-precio" style="font-size:1.45rem; font-weight:900; color:var(--green-leaf);">$35.000</strong>
+                </div>
+                <a href="login.html" class="btn-accion" style="width:auto; margin-top:0; padding:12px 22px;">
+                    <svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    Comprar / Reservar
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section class="historia-section" id="historia">
+        <div class="historia-container">
+            <h2>Nuestra Finca: Raíces en Támesis</h2>
+            <p>
+                Ubicados en las montañas de <b>Támesis y Antioquia, Vereda La Alacena</b>, en <b>Café para Siempre</b> cultivamos la tierra con respeto por la tradición cafetera y el entorno natural. Nuestra finca cuenta con una altitud favorable que permite que el grano madure de forma equilibrada y conserve sus características de origen.
+            </p>
+
+            <div class="sub-highlight-box">
+                <div>
+                    <h3>
+                        <svg class="ic" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                        Plan Mensual En Tu Mesa Sin Parar
+                    </h3>
+                    <p>Recibe tus bolsas periódicamente con beneficios exclusivos de suscriptor y gestiona tu compra desde tu cuenta.</p>
+                </div>
+                <a href="login.html" class="btn-hero-simulador">
+                    <svg class="ic" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    Suscribirme / Iniciar Sesión
+                </a>
+            </div>
+
+            <div class="historia-grid">
+                <div class="historia-card">
+                    <h3>
+                        <svg class="ic" viewBox="0 0 24 24"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+                        Altitud &amp; Clima
+                    </h3>
+                    <p>Cultivado entre 1,700 y 2,000 metros sobre el nivel del mar, con microclimas de montaña que favorecen el aroma y el balance en taza.</p>
+                </div>
+                <div class="historia-card">
+                    <h3>
+                        <svg class="ic" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                        Prácticas Sostenibles
+                    </h3>
+                    <p>Manejo responsable de recursos y cuidado de las fuentes hídricas y la vegetación de la zona.</p>
+                </div>
+                <div class="historia-card">
+                    <h3>
+                        <svg class="ic" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                        Sabor con Identidad
+                    </h3>
+                    <p>Un proyecto con raíces locales que acerca el trabajo de la finca directamente a quienes disfrutan un buen café.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="ai-assistant-wrapper">
+        <div class="ai-fab-btn" onclick="toggleAIChat()" title="Asistente IA Café para Siempre">
+            <svg class="ic ic-lg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
+        </div>
+
+        <div class="ai-chat-window" id="aiWindow">
+            <div class="ai-chat-header">
+                <div class="ai-header-info">
+                    <div class="ai-avatar">IA</div>
+                    <div class="ai-header-text">
+                        <h4>Asistente Experto Global</h4>
+                        <span>En línea • Finca La Sierra</span>
+                    </div>
+                </div>
+                <button type="button" class="ai-close-btn" onclick="toggleAIChat()" aria-label="Cerrar asistente">
+                    <svg class="ic" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+
+            <div class="ai-chat-messages" id="aiMessages">
+                <div class="ai-msg bot">
+                    ¡Hola! Soy tu <b>Asistente Experto en Café</b>. Te ayudo a elegir un lote, revisar moliendas, preparar en V60 o iniciar sesión para comprar y suscribirte.
+                </div>
+            </div>
+
+            <div class="ai-quick-chips">
+                <div class="chip" onclick="sendChipQuery('Recomiéndame un buen café')">Recomendar café</div>
+                <div class="chip" onclick="sendChipQuery('¿Cómo comprar o suscribirme?')">Comprar / Suscribirme</div>
+                <div class="chip" onclick="sendChipQuery('Método de extracción V60')">Tips de extracción</div>
+            </div>
+
+            <div class="ai-chat-input-area">
+                <input type="text" id="aiUserInput" placeholder="Pregunta sobre café, precios, molienda..." onkeypress="handleAIKeyPress(event)">
+                <button type="button" class="ai-send-btn" onclick="processUserQuery()" aria-label="Enviar mensaje">
+                    <svg class="ic" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Café para Siempre - Támesis y Antioquia, Vereda La Alacena. Todos los derechos reservados.</p>
+        <p style="font-size: 0.85rem; color: #78716C;">Plataforma de Trazabilidad Agrícola y Experiencia Cafetera.</p>
+    </footer>
+
+    <script>
+        const productosTotales = [
+            { id: "CPS-001", nombre: "Bolsa Borbón Rosado", tipoCafé: "Borbón Rosado", proceso: "Honey", fermentacion: "48 horas", tueste: "Medio", peso: "500g", precio: "$35.000", stockReservado: 12, tuesteFecha: "Tostado hace 24 horas" },
+            { id: "CPS-002", nombre: "Bolsa Castillo Tradición", tipoCafé: "Castillo", proceso: "Lavado", fermentacion: "24 horas", tueste: "Medio-Oscuro", peso: "1000g", precio: "$48.000", stockReservado: 30, tuesteFecha: "Tostado fresco semanal" },
+            { id: "CPS-003", nombre: "Bolsa Geisha de Altura", tipoCafé: "Geisha", proceso: "Natural", fermentacion: "72 horas", tueste: "Claro", peso: "250g", precio: "$45.000", stockReservado: 5, tuesteFecha: "Tostado bajo demanda" },
+            { id: "CPS-004", nombre: "Bolsa Caturra Finca", tipoCafé: "Caturra", proceso: "Lavado", fermentacion: "30 horas", tueste: "Medio", peso: "500g", precio: "$28.000", stockReservado: 22, tuesteFecha: "Tostado hace 48 horas" },
+            { id: "CPS-005", nombre: "Bolsa Sidra Especial Fermento", tipoCafé: "Sidra", proceso: "Anaeróbico", fermentacion: "96 horas", tueste: "Claro", peso: "250g", precio: "$50.000", stockReservado: 8, tuesteFecha: "Tostado reciente" },
+            { id: "CPS-006", nombre: "Bolsa Tabi Reserva Oscura", tipoCafé: "Tabi", proceso: "Natural", fermentacion: "60 horas", tueste: "Oscuro", peso: "1000g", precio: "$55.000", stockReservado: 15, tuesteFecha: "Tostado semanal" },
+            { id: "CPS-007", nombre: "Bolsa Maracaturra Exótico", tipoCafé: "Maracaturra", proceso: "Honey", fermentacion: "50 horas", tueste: "Medio", peso: "500g", precio: "$40.000", stockReservado: 10, tuesteFecha: "Tostado fresco" },
+            { id: "CPS-008", nombre: "Bolsa Borbón Ajefruta", tipoCafé: "Borbón", proceso: "Anaeróbico", fermentacion: "72 horas", tueste: "Claro", peso: "250g", precio: "$32.000", stockReservado: 14, tuesteFecha: "Tostado reciente" },
+            { id: "CPS-009", nombre: "Bolsa Blend Tradición Finca", tipoCafé: "Mezcla Aragüita", proceso: "Lavado", fermentacion: "20 horas", tueste: "Medio", peso: "1000g", precio: "$42.000", stockReservado: 45, tuesteFecha: "Tostado semanal" },
+            { id: "CPS-010", nombre: "Bolsa Catuaí Amarillo", tipoCafé: "Catuaí", proceso: "Honey", fermentacion: "40 horas", tueste: "Medio", peso: "500g", precio: "$30.000", stockReservado: 18, tuesteFecha: "Tostado fresco" },
+            { id: "CPS-011", nombre: "Bolsa Typica Ancestral", tipoCafé: "Typica", proceso: "Lavado", fermentacion: "36 horas", tueste: "Claro", peso: "500g", precio: "$38.000", stockReservado: 9, tuesteFecha: "Tostado bajo demanda" },
+            { id: "CPS-012", nombre: "Bolsa Moka de Altura", tipoCafé: "Moka", proceso: "Natural", fermentacion: "55 horas", tueste: "Medio", peso: "250g", precio: "$29.000", stockReservado: 11, tuesteFecha: "Tostado reciente" },
+            { id: "CPS-013", nombre: "Bolsa San Bernardo", tipoCafé: "San Bernardo", proceso: "Lavado", fermentacion: "24 horas", tueste: "Medio-Oscuro", peso: "1000g", precio: "$46.000", stockReservado: 25, tuesteFecha: "Tostado semanal" },
+            { id: "CPS-014", nombre: "Bolsa Edición Cosecha Lluviosa", tipoCafé: "Castillo / Caturra", proceso: "Honey", fermentacion: "45 horas", tueste: "Medio", peso: "500g", precio: "$33.000", stockReservado: 16, tuesteFecha: "Tostado fresco" },
+            { id: "CPS-015", nombre: "Bolsa Robusta Especial Finca", tipoCafé: "Robusta Lavado", proceso: "Lavado", fermentacion: "18 horas", tueste: "Oscuro", peso: "1000g", precio: "$39.000", stockReservado: 20, tuesteFecha: "Tostado semanal" },
+            { id: "CPS-016", nombre: "Bolsa Pacamara Gigante", tipoCafé: "Pacamara", proceso: "Anaeróbico", fermentacion: "80 horas", tueste: "Claro", peso: "250g", precio: "$48.000", stockReservado: 7, tuesteFecha: "Tostado bajo demanda" },
+            { id: "CPS-017", nombre: "Bolsa Caturra Rojo Intenso", tipoCafé: "Caturra", proceso: "Natural", fermentacion: "48 horas", tueste: "Medio", peso: "500g", precio: "$31.000", stockReservado: 22, tuesteFecha: "Tostado fresco" },
+            { id: "CPS-018", nombre: "Bolsa Gran Reserva Finca", tipoCafé: "Borbón / Geisha", proceso: "Anaeróbico", fermentacion: "100 horas", tueste: "Medio", peso: "500g", precio: "$65.000", stockReservado: 4, tuesteFecha: "Tostado exclusivo" }
+        ];
+
+        const productosPorPagina = 9;
+
+        function renderizarMatriz(pagina) {
+            const contenedor = document.getElementById("contenedor-matriz");
+            contenedor.innerHTML = "";
+
+            const inicio = (pagina - 1) * productosPorPagina;
+            const fin = inicio + productosPorPagina;
+            const productosPagina = productosTotales.slice(inicio, fin);
+
+            document.getElementById("rango-pag").innerText = `${inicio + 1} - ${Math.min(fin, productosTotales.length)}`;
+
+            productosPagina.forEach((prod) => {
+                const card = document.createElement("div");
+                card.className = "item-card";
+                card.innerHTML = `
+                    <div>
+                        <div class="bolsa-container">
+                            <span class="badge-id">${prod.id}</span>
+                            <span class="badge-peso">${prod.peso}</span>
+                            <div class="bolsa-fisica">
+                                <div class="bolsa-valvula"></div>
+                                <div class="bolsa-etiqueta-real">
+                                    <div class="etiqueta-brand">Café para Siempre</div>
+                                    <div class="etiqueta-variedad">${prod.tipoCafé}</div>
+                                    <div class="etiqueta-proceso">Proceso: ${prod.proceso}</div>
+                                </div>
+                                <div style="font-size: 0.5rem; color: #aaa; margin-bottom: 3px;">Vereda La Alacena</div>
+                            </div>
+                        </div>
+
+                        <div class="item-body">
+                            <div class="item-title">${prod.nombre}</div>
+
+                            <div class="molienda-box">
+                                <label>
+                                    <svg class="ic" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></svg>
+                                    Tipo de Molienda:
+                                </label>
+                                <select>
+                                    <option value="grano">Grano Entero (Recomendado)</option>
+                                    <option value="media">Media (V60 / Filtro)</option>
+                                    <option value="gruesa">Gruesa (Prensa Francesa)</option>
+                                    <option value="fina">Fina (Espresso)</option>
+                                </select>
+                            </div>
+
+                            <div class="item-specs">
+                                <div><span>Variedad:</span> <span>${prod.tipoCafé}</span></div>
+                                <div><span>Proceso:</span> <span>${prod.proceso}</span></div>
+                                <div><span>Fermentación:</span> <span>${prod.fermentacion}</span></div>
+                                <div><span>Tueste:</span> <span>${prod.tueste}</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 0 22px 22px 22px;">
+                        <div class="item-footer">
+                            <div class="precio-tag">${prod.precio}</div>
+                            <div class="stock-tag">
+                                <svg class="ic" style="width:13px;height:13px;" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                                ${prod.stockReservado} reservadas
+                            </div>
+                        </div>
+                        <div class="card-actions-grid">
+                            <button type="button" class="btn-detalle" onclick="abrirDetalle('${prod.id}')">
+                                <svg class="ic" style="width:14px;height:14px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                                Ver detalles
+                            </button>
+                            <a href="login.html" class="btn-accion">
+                                <svg class="ic" style="width:15px;height:15px;" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                                Comprar
+                            </a>
+                        </div>
+                    </div>
+                `;
+                contenedor.appendChild(card);
+            });
+        }
+
+        function abrirDetalle(id) {
+            const p = productosTotales.find((item) => item.id === id);
+            if (!p) return;
+            document.getElementById("det-id").innerText = p.id;
+            document.getElementById("det-nombre").innerText = p.nombre;
+            document.getElementById("det-desc").innerText = `${p.tuesteFecha}. Disponible en grano entero o molido según tu método de preparación.`;
+            document.getElementById("det-variedad").innerText = p.tipoCafé;
+            document.getElementById("det-proceso").innerText = p.proceso;
+            document.getElementById("det-ferm").innerText = p.fermentacion;
+            document.getElementById("det-tueste").innerText = `${p.tueste} • ${p.peso}`;
+            document.getElementById("det-precio").innerText = p.precio;
+            document.getElementById("modal-detalle").classList.add("open");
+        }
+
+        function cerrarDetalle() {
+            document.getElementById("modal-detalle").classList.remove("open");
+        }
+
+        function cargarPagina(numPagina) {
+            const botones = document.querySelectorAll(".page-btn");
+            botones.forEach((btn, index) => {
+                btn.classList.toggle("active", index + 1 === numPagina);
+            });
+            renderizarMatriz(numPagina);
+        }
+
+        function recomendarMaridaje() {
+            const val = document.getElementById("sel-comida").value;
+            const caja = document.getElementById("out-maridaje");
+            const mensajes = {
+                "arepa-queso": "<b>Combinación ideal:</b> Bolsa Castillo Tradición (CPS-002). Su perfil balanceado acompaña muy bien el quesito.",
+                "arepa-huevo": "<b>Combinación ideal:</b> Bolsa Caturra Finca (CPS-004). Cuerpo firme y práctico para la mañana.",
+                "arepa-chocolo": "<b>Combinación ideal:</b> Bolsa Borbón Rosado (CPS-001). Dulzor floral que resalta con el chócolo.",
+                "buñuelo-pandequeso": "<b>Combinación ideal:</b> Bolsa Catuaí Amarillo (CPS-010). Dulzor cálido para acompañar amasijos.",
+                "parva-dulce": "<b>Combinación ideal:</b> Bolsa Geisha de Altura (CPS-003). Perfil limpio que equilibra lo dulce.",
+                "torta-chocolate": "<b>Combinación ideal:</b> Bolsa Sidra Especial Fermento (CPS-005). Notas intensas para postres de cacao."
+            };
+            caja.innerHTML = `<span>${mensajes[val]}</span><a href="login.html" class="tool-mini-link">Reservar o comprar este café</a>`;
+        }
+
+        function calcularBolsasMes() {
+            const tazas = parseInt(document.getElementById("inp-tazas").value, 10);
+            const caja = document.getElementById("out-calculadora");
+
+            if (isNaN(tazas) || tazas <= 0) {
+                caja.innerHTML = "<span>Ingresa un número válido de tazas diarias.</span>";
+                return;
+            }
+
+            const gramosMensuales = tazas * 10 * 30;
+            const bolsas500g = Math.ceil(gramosMensuales / 500);
+
+            caja.innerHTML = `<span>Con <b>${tazas} taza(s) diarias</b> (~${gramosMensuales}g/mes), necesitas <b>${bolsas500g} bolsa(s) de 500g</b> al mes.</span><a href="login.html" class="tool-mini-link">Iniciar sesión para pedir</a>`;
+        }
+
+        function rastrearLoteFinca() {
+            const codigo = document.getElementById("inp-lote").value.trim().toUpperCase();
+            const caja = document.getElementById("out-lote");
+            const item = productosTotales.find((p) => p.id === codigo);
+            if (item) {
+                caja.innerHTML = `<span><b>Lote verificado (${item.id}):</b> ${item.nombre}. ${item.tuesteFecha}.</span><a href="login.html" class="tool-mini-link">Comprar este lote</a>`;
+            } else {
+                caja.innerHTML = "<span>Código no encontrado. Prueba con <b>CPS-001</b>, <b>CPS-002</b> o <b>CPS-003</b>.</span>";
+            }
+        }
+
+        function recomendarCompra() {
+            const obj = document.getElementById("sel-objetivo").value;
+            const caja = document.getElementById("out-compra");
+            const respuestas = {
+                "hogar": "Para el hogar te conviene <b>Castillo Tradición (1000g)</b> o <b>Blend Tradición (1000g)</b> por rendimiento.",
+                "regalo": "Para regalar destaca <b>Geisha de Altura (CPS-003)</b> o <b>Gran Reserva Finca (CPS-018)</b>.",
+                "filtro": "Para método de filtro o V60 prueba <b>Borbón Rosado (CPS-001)</b> con molienda media.",
+                "suscripcion": "Activa el plan mensual en tu cuenta para mantener tu reserva al día sin quedarte sin café."
+            };
+            caja.innerHTML = `<span>${respuestas[obj]}</span><a href="login.html" class="tool-mini-link">Ir a Iniciar Sesión / Comprar</a>`;
+        }
+
+        function toggleAIChat() {
+            const win = document.getElementById("aiWindow");
+            win.style.display = win.style.display === "flex" ? "none" : "flex";
+            if (win.style.display === "flex") {
+                document.getElementById("aiUserInput").focus();
+            }
+        }
+
+        function handleAIKeyPress(event) {
+            if (event.key === "Enter") {
+                processUserQuery();
+            }
+        }
+
+        function sendChipQuery(queryText) {
+            document.getElementById("aiUserInput").value = queryText;
+            processUserQuery();
+        }
+
+        function processUserQuery() {
+            const inputField = document.getElementById("aiUserInput");
+            const text = inputField.value.trim();
+            if (!text) return;
+
+            const chatMessages = document.getElementById("aiMessages");
+            chatMessages.innerHTML += `<div class="ai-msg user">${text}</div>`;
+            inputField.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                const response = generateAIResponse(text);
+                chatMessages.innerHTML += `<div class="ai-msg bot">${response}</div>`;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 400);
+        }
+
+        function generateAIResponse(query) {
+            const q = query.toLowerCase();
+            if (q.includes("recomienda") || q.includes("buen café") || q.includes("cual compro") || q.includes("quiero un café")) {
+                return "Te recomiendo <b>Bolsa Borbón Rosado (CPS-001)</b> con proceso Honey o <b>Castillo Tradición (CPS-002)</b> para diario. Haz clic en <b>Ver detalles</b> o <b>Comprar</b> en la tarjeta.";
+            }
+            if (q.includes("comprar") || q.includes("suscrib") || q.includes("reservar")) {
+                return "Puedes elegir tu molienda en el catálogo y entrar con <b>Iniciar Sesión</b> para confirmar tu compra o activar tu plan mensual.";
+            }
+            if (q.includes("v60") || q.includes("metodo") || q.includes("extraccion") || q.includes("preparar")) {
+                return "Para <b>V60</b> usa molienda media, relación 1:15 (ej. 15g de café por 225g de agua a 92°C), preinfusión inicial y vertido suave en círculos.";
+            }
+            return `Sobre <i>"${query}"</i>: revisa el catálogo o usa las herramientas del <b>Laboratorio Sensorial</b> para calcular tus bolsas del mes y elegir tu lote.`;
+        }
+
+        window.onload = function () {
+            renderizarMatriz(1);
+            calcularBolsasMes();
+        };
+    </script>
+</body>
+</html>

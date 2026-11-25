@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso | Café para Siempre</title>
+    
+    <!-- Fuente Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2C1810;
+            --primary-hover: #1A0F0A;
+            --accent: #D4A373;
+            --green-leaf: #2D5A27;
+            --green-hover: #1E3F1A;
+            --bg-body: #140C08;
+            --surface-card: #FFFFFF;
+            --surface-subtle: #F9F8F6;
+            --border-color: #E6DFD3;
+            --text-main: #1F1F1F;
+            --text-muted: #6C757D;
+            --white: #FFFFFF;
+            --danger: #D90429;
+            --danger-bg: #FEE2E2;
+            --success: #2A9D8F;
+            --success-bg: #E6F4F1;
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.55);
+            --radius-md: 12px;
+            --radius-lg: 24px;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* FONDO DE TÁMESIS CON OPACIDAD 1.00 */
+        .bg-tamesis-backdrop {
+            position: fixed;
+            inset: 0;
+            background: url('https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg') center/cover no-repeat;
+            opacity: 1.00;
+            filter: brightness(0.72) contrast(1.05) blur(1px);
+            transform: scale(1.02);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-dark-scrim {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(20, 12, 8, 0.55) 0%, rgba(44, 24, 16, 0.48) 55%, rgba(15, 9, 6, 0.62) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .auth-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 920px;
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        @media (min-width: 820px) {
+            .auth-container {
+                grid-template-columns: 1fr 1.15fr;
+            }
+        }
+
+        /* BANNER IZQUIERDO CON IDENTIDAD DE TÁMESIS */
+        .auth-hero {
+            position: relative;
+            background: linear-gradient(180deg, rgba(44, 24, 16, 0.4) 0%, rgba(23, 10, 5, 0.9) 100%),
+                        url('https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg') center/cover no-repeat;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: var(--white);
+            min-height: 240px;
+        }
+
+        @media (min-width: 820px) {
+            .auth-hero {
+                min-height: 560px;
+                padding: 48px 36px;
+            }
+        }
+
+        .hero-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-brand-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            object-fit: cover;
+        }
+
+        .hero-brand-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+        }
+
+        .hero-brand-sub {
+            font-size: 0.78rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .hero-body h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 10px;
+        }
+
+        .hero-body p {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(212, 163, 115, 0.2);
+            border: 1px solid var(--accent);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            width: fit-content;
+            margin-top: 14px;
+        }
+
+        /* SECCIÓN DERECHA DE FORMULARIO */
+        .auth-form-wrapper {
+            padding: 36px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--surface-card);
+        }
+
+        @media (min-width: 820px) {
+            .auth-form-wrapper {
+                padding: 44px 42px;
+            }
+        }
+
+        .form-header {
+            margin-bottom: 18px;
+        }
+
+        .form-header h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .form-header p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* VISTAS FORMULARIO (LOGIN VS REGISTRO) */
+        .auth-view {
+            display: none;
+            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .auth-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* PISTA DE CUENTA RECONOCIDA */
+        .account-badge {
+            display: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: #FDF8F2;
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .account-badge.active {
+            display: block;
+        }
+
+        /* NOTIFICACIÓN INTEGRADA */
+        .alert-toast {
+            display: none;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            font-size: 0.84rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .alert-toast.danger {
+            background: var(--danger-bg);
+            color: var(--danger);
+            border: 1px solid #FCA5A5;
+        }
+
+        .alert-toast.success {
+            background: var(--success-bg);
+            color: var(--success);
+            border: 1px solid #99F6E4;
+        }
+
+        .alert-toast.active {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-row-two {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 520px) {
+            .form-row-two {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .form-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.83rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper svg.field-icon {
+            position: absolute;
+            left: 14px;
+            width: 18px;
+            height: 18px;
+            fill: var(--text-muted);
+            pointer-events: none;
+            transition: fill 0.2s;
+        }
+
+        .input-control, select.select-control {
+            width: 100%;
+            padding: 11px 42px;
+            background: var(--surface-subtle);
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        select.select-control {
+            padding: 11px 14px;
+            cursor: pointer;
+        }
+
+        .input-control:focus, select.select-control:focus {
+            background: var(--surface-card);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.2);
+        }
+
+        .input-wrapper:focus-within svg.field-icon {
+            fill: var(--primary);
+        }
+
+        .form-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .remember-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .remember-label input {
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* INDICADOR DE FUERZA EN REGISTRO */
+        .strength-box {
+            margin-top: 7px;
+        }
+
+        .strength-segments {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            height: 4px;
+            margin-bottom: 4px;
+        }
+
+        .strength-segments span {
+            background: #E5E7EB;
+            border-radius: 4px;
+            transition: background 0.25s;
+        }
+
+        .strength-label {
+            font-size: 0.73rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-password svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-muted);
+            transition: fill 0.2s;
+        }
+
+        .toggle-password:hover svg {
+            fill: var(--primary);
+        }
+
+        .forgot-link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--green-leaf);
+            text-decoration: none;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-primary-action {
+            width: 100%;
+            padding: 13px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+            box-shadow: 0 4px 12px rgba(44, 24, 16, 0.15);
+        }
+
+        .btn-primary-action:hover:not(:disabled) {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary-action:disabled {
+            opacity: 0.72;
+            cursor: not-allowed;
+        }
+
+        .btn-primary-action.confirmed {
+            background: var(--success);
+        }
+
+        .btn-primary-action.register-btn {
+            background: var(--green-leaf);
+        }
+
+        .btn-primary-action.register-btn:hover:not(:disabled) {
+            background: var(--green-hover);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 18px 0 14px;
+            color: var(--text-muted);
+            font-size: 0.73rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .divider span {
+            padding: 0 10px;
+        }
+
+        .sso-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-sso {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 11px;
+            background: var(--white);
+            border: 1px solid #D1D5DB;
+            border-radius: var(--radius-md);
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-sso:hover {
+            background: #F9FAFB;
+            border-color: #9CA3AF;
+        }
+
+        .btn-sso svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .btn-sso.facebook-btn {
+            background: #1877F2;
+            color: #FFFFFF;
+            border: none;
+        }
+
+        .btn-sso.facebook-btn:hover {
+            background: #166FE5;
+        }
+
+        /* NAVEGACIÓN DISCRETA INFERIOR PARA CAMBIAR ENTRE VISTAS */
+        .switch-view-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .switch-view-link {
+            color: var(--green-leaf);
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            margin-left: 4px;
+        }
+
+        .switch-view-link:hover {
+            text-decoration: underline;
+        }
+
+        .back-home-link {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-home-link:hover {
+            color: var(--primary);
+        }
+
+        /* MODAL RECUPERACIÓN */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: var(--white);
+            width: 100%;
+            max-width: 400px;
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px; right: 14px;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FONDO DE TÁMESIS CON OPACIDAD 1.00 -->
+    <div class="bg-tamesis-backdrop" aria-hidden="true"></div>
+    <div class="bg-dark-scrim" aria-hidden="true"></div>
+
+    <div class="auth-container">
+        
+        <!-- BANNER IZQUIERDO -->
+        <div class="auth-hero">
+            <div class="hero-brand">
+                <img src="https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg" alt="Támesis" class="hero-brand-img">
+                <div>
+                    <div class="hero-brand-title">Café para Siempre</div>
+                    <div class="hero-brand-sub">Finca La Sierra</div>
+                </div>
+            </div>
+
+            <div class="hero-body">
+                <h2>El sabor del origen en tu mesa.</h2>
+                <p>Ingresa a tu cuenta para gestionar tus suscripciones mensuales y explorar nuestras cosechas en Vereda La Alacena, Támesis.</p>
+                <div class="hero-badge">📍 Támesis, Antioquia</div>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DERECHO -->
+        <div class="auth-form-wrapper">
+            
+            <div id="alert-toast" class="alert-toast"></div>
+
+            <!-- VISTA 1: INICIAR SESIÓN (PRINCIPAL) -->
+            <div id="view-login" class="auth-view active">
+                <div class="form-header">
+                    <h2>Iniciar Sesión</h2>
+                    <p>Ingresa tus credenciales para acceder a la plataforma.</p>
+                </div>
+
+                <div id="account-badge" class="account-badge"></div>
+
+                <form onsubmit="handleLoginSubmit(event)">
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="login-email">Correo Electrónico</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <svg class="field-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <input type="email" id="login-email" class="input-control" placeholder="tu-correo@ejemplo.com" required autocomplete="username" oninput="detectarCuenta()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="login-password">Contraseña</label>
+                            <a href="javascript:void(0)" class="forgot-link" onclick="openResetModal()">¿Olvidaste tu contraseña?</a>
+                        </div>
+                        <div class="input-wrapper">
+                            <svg class="field-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                            <input type="password" id="login-password" class="input-control" placeholder="••••••••" required autocomplete="current-password">
+                            
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('login-password', this)">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-meta-row">
+                        <label class="remember-label">
+                            <input type="checkbox" id="recordar-correo">
+                            <span>Recordar correo</span>
+                        </label>
+                        <span id="intentos-aviso"></span>
+                    </div>
+
+                    <button type="submit" id="btn-login" class="btn-primary-action">
+                        Entrar a la Plataforma
+                    </button>
+
+                    <div class="divider">
+                        <span>O continúa con</span>
+                    </div>
+
+                    <div class="sso-container">
+                        <button type="button" class="btn-sso" onclick="triggerSSO('Google')">
+                            <svg viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                            </svg>
+                            Google
+                        </button>
+
+                        <button type="button" class="btn-sso facebook-btn" onclick="triggerSSO('Facebook')">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            Facebook
+                        </button>
+                    </div>
+
+                    <div class="switch-view-footer">
+                        ¿No tienes una cuenta aún? 
+                        <a href="javascript:void(0)" class="switch-view-link" onclick="toggleAuthView('register')">Crear cuenta</a>
+                        <div><a href="index.html" class="back-home-link">← Volver al inicio</a></div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- VISTA 2: CREAR CUENTA -->
+            <div id="view-register" class="auth-view">
+                <div class="form-header">
+                    <h2>Crear Cuenta</h2>
+                    <p>Regístrate gratis para disfrutar de la experiencia completa.</p>
+                </div>
+
+                <form onsubmit="handleRegisterSubmit(event)">
+                    <div class="form-group">
+                        <div class="form-label"><label for="reg-name">Nombre Completo</label></div>
+                        <div class="input-wrapper">
+                            <svg class="field-icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            <input type="text" id="reg-name" class="input-control" placeholder="Tu nombre completo" required autocomplete="name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-label"><label for="reg-email">Correo Electrónico</label></div>
+                        <div class="input-wrapper">
+                            <svg class="field-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <input type="email" id="reg-email" class="input-control" placeholder="tu-correo@ejemplo.com" required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="form-row-two">
+                        <div>
+                            <div class="form-label"><label for="reg-grind">Molienda preferida</label></div>
+                            <select id="reg-grind" class="select-control">
+                                <option value="Grano entero">Grano entero</option>
+                                <option value="Molienda media (V60 / Greca)">Molienda media</option>
+                                <option value="Molienda fina">Molienda fina</option>
+                            </select>
+                        </div>
+                        <div>
+                            <div class="form-label"><label for="reg-plan">Plan mensual</label></div>
+                            <select id="reg-plan" class="select-control">
+                                <option value="Sin suscripción aún">Solo compras puntuales</option>
+                                <option value="1 bolsa de 500 g / mes">1 bolsa de 500 g / mes</option>
+                                <option value="2 bolsas de 500 g / mes">2 bolsas de 500 g / mes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-label"><label for="reg-password">Contraseña</label></div>
+                        <div class="input-wrapper">
+                            <svg class="field-icon" viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v2h2v-2h2v-2h-8.35zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+                            <input type="password" id="reg-password" class="input-control" placeholder="Mínimo 6 caracteres" required minlength="6" autocomplete="new-password" oninput="medirFuerzaClave()">
+                        </div>
+                        <div class="strength-box">
+                            <div class="strength-segments" id="strength-segments">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="strength-label" id="strength-label">Mínimo 6 caracteres</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-label"><label for="reg-password-confirm">Confirmar Contraseña</label></div>
+                        <div class="input-wrapper">
+                            <svg class="field-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                            <input type="password" id="reg-password-confirm" class="input-control" placeholder="Repite tu contraseña" required minlength="6" autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary-action register-btn">
+                        Registrarme Ahora
+                    </button>
+
+                    <div class="switch-view-footer">
+                        ¿Ya tienes una cuenta? 
+                        <a href="javascript:void(0)" class="switch-view-link" onclick="toggleAuthView('login')">Iniciar sesión</a>
+                        <div><a href="index.html" class="back-home-link">← Volver al inicio</a></div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL DE RECUPERACIÓN -->
+    <div class="modal-overlay" id="recovery-modal">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeResetModal()">&times;</button>
+            <div style="text-align: center; margin-bottom: 18px;">
+                <h3 style="color:var(--primary); font-weight:800; margin-top:4px;">Recuperar Contraseña</h3>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                    Escribe tu correo y te enviaremos el enlace de restauración.
+                </p>
+            </div>
+            
+            <form onsubmit="handlePasswordReset(event)">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <svg class="field-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <input type="email" id="reset-email" class="input-control" placeholder="tu-correo@ejemplo.com" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary-action">
+                    Enviar Instrucciones
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_EMAIL = "admin@cafeparasiempre.com";
+        const ADMIN_PASS = "admin123";
+        const KEY_CORREO = "cafe_correo_recordado";
+        let intentosFallidos = 0;
+        let bloqueoTimer = null;
+
+        function obtenerUsuarios() {
+            const guardados = localStorage.getItem('db_usuarios_cafe');
+            return guardados ? JSON.parse(guardados) : [];
+        }
+
+        function guardarUsuarios(lista) {
+            localStorage.setItem('db_usuarios_cafe', JSON.stringify(lista));
+        }
+
+        function mostrarNotificacion(mensaje, tipo = 'danger') {
+            const toast = document.getElementById('alert-toast');
+            toast.innerText = mensaje;
+            toast.className = `alert-toast ${tipo} active`;
+        }
+
+        function ocultarNotificacion() {
+            const toast = document.getElementById('alert-toast');
+            toast.className = 'alert-toast';
+        }
+
+        function toggleAuthView(targetView) {
+            ocultarNotificacion();
+            const loginView = document.getElementById('view-login');
+            const registerView = document.getElementById('view-register');
+
+            if (targetView === 'register') {
+                loginView.classList.remove('active');
+                registerView.classList.add('active');
+            } else {
+                registerView.classList.remove('active');
+                loginView.classList.add('active');
+                detectarCuenta();
+            }
+        }
+
+        function detectarCuenta() {
+            const correo = document.getElementById('login-email').value.trim().toLowerCase();
+            const badge = document.getElementById('account-badge');
+
+            if (!correo) {
+                badge.classList.remove('active');
+                return;
+            }
+
+            if (correo === ADMIN_EMAIL) {
+                badge.innerText = "Acceso de administración detectado";
+                badge.classList.add('active');
+                return;
+            }
+
+            const encontrado = obtenerUsuarios().find(u => u.email === correo);
+            if (encontrado) {
+                const detallePlan = encontrado.plan && encontrado.plan !== 'Sin suscripción aún'
+                    ? ` · ${encontrado.plan}`
+                    : '';
+                badge.innerText = `Cuenta encontrada: ${encontrado.nombre}${detallePlan}`;
+                badge.classList.add('active');
+            } else {
+                badge.classList.remove('active');
+            }
+        }
+
+        function medirFuerzaClave() {
+            const clave = document.getElementById('reg-password').value;
+            const tramos = document.querySelectorAll('#strength-segments span');
+            const etiqueta = document.getElementById('strength-label');
+
+            let puntos = 0;
+            if (clave.length >= 6) puntos++;
+            if (clave.length >= 9 && /[A-Z]/.test(clave)) puntos++;
+            if (clave.length >= 8 && /[0-9!@#$%^&*]/.test(clave)) puntos++;
+
+            const colores = ['#E5E7EB', '#EF4444', '#D97706', '#2D5A27'];
+            const textos = ['Mínimo 6 caracteres', 'Seguridad básica', 'Buena contraseña', 'Contraseña segura'];
+
+            tramos.forEach((tramo, i) => {
+                tramo.style.background = i < puntos ? colores[puntos] : '#E5E7EB';
+            });
+            etiqueta.innerText = clave.length === 0 ? textos[0] : textos[Math.max(1, puntos)];
+        }
+
+        function togglePasswordVisibility(fieldId, btnElement) {
+            const inputField = document.getElementById(fieldId);
+            const svgIcon = btnElement.querySelector('svg');
+
+            if (inputField.type === 'password') {
+                inputField.type = 'text';
+                svgIcon.innerHTML = `<path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.44-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.17c0-1.66-1.34-3-3-3l-.17.02z"/>`;
+            } else {
+                inputField.type = 'password';
+                svgIcon.innerHTML = `<path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>`;
+            }
+        }
+
+        function guardarCorreoRecordado(email) {
+            const check = document.getElementById('recordar-correo');
+            if (check && check.checked) {
+                localStorage.setItem(KEY_CORREO, email);
+            } else {
+                localStorage.removeItem(KEY_CORREO);
+            }
+        }
+
+        function activarPausaTemporal(segundos = 5) {
+            const btn = document.getElementById('btn-login');
+            let restante = segundos;
+            btn.disabled = true;
+            btn.innerText = `Espera ${restante}s para reintentar`;
+
+            if (bloqueoTimer) clearInterval(bloqueoTimer);
+            bloqueoTimer = setInterval(() => {
+                restante--;
+                if (restante <= 0) {
+                    clearInterval(bloqueoTimer);
+                    bloqueoTimer = null;
+                    btn.disabled = false;
+                    btn.innerText = "Entrar a la Plataforma";
+                } else {
+                    btn.innerText = `Espera ${restante}s para reintentar`;
+                }
+            }, 1000);
+        }
+
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            ocultarNotificacion();
+
+            const email = document.getElementById('login-email').value.trim().toLowerCase();
+            const password = document.getElementById('login-password').value.trim();
+
+            const btn = document.getElementById('btn-login');
+            btn.disabled = true;
+            btn.innerText = "Verificando...";
+            btn.style.opacity = "0.75";
+
+            setTimeout(() => {
+                btn.style.opacity = "1";
+                guardarCorreoRecordado(email);
+
+                if (email === ADMIN_EMAIL && password === ADMIN_PASS) {
+                    intentosFallidos = 0;
+                    document.getElementById('intentos-aviso').innerText = "";
+                    btn.classList.add('confirmed');
+                    btn.innerText = "✓ Acceso verificado";
+
+                    localStorage.setItem('usuarioLogueado', JSON.stringify({
+                        email: ADMIN_EMAIL,
+                        rol: 'administrador',
+                        nombre: 'Administrador Café para Siempre'
+                    }));
+                    localStorage.setItem('usuarioActivo', ADMIN_EMAIL);
+                    localStorage.setItem('rolUsuario', 'admin');
+
+                    mostrarNotificacion('¡Acceso concedido! Entrando al Panel de Administración...', 'success');
+                    setTimeout(() => { window.location.href = 'admin-dashboard.html'; }, 850);
+                    return;
+                }
+
+                const clientes = obtenerUsuarios();
+                const clienteValido = clientes.find(u => u.email === email && u.pass === password);
+
+                if (clienteValido) {
+                    intentosFallidos = 0;
+                    document.getElementById('intentos-aviso').innerText = "";
+                    btn.classList.add('confirmed');
+                    btn.innerText = "✓ Sesión iniciada";
+
+                    localStorage.setItem('usuarioLogueado', JSON.stringify({
+                        email: clienteValido.email,
+                        rol: 'cliente',
+                        nombre: clienteValido.nombre,
+                        molienda: clienteValido.molienda || 'Grano entero',
+                        plan: clienteValido.plan || 'Sin suscripción aún'
+                    }));
+                    localStorage.setItem('usuarioActivo', clienteValido.email);
+                    localStorage.setItem('rolUsuario', 'cliente');
+
+                    mostrarNotificacion(`¡Bienvenido ${clienteValido.nombre}! Abriendo la tienda...`, 'success');
+                    setTimeout(() => { window.location.href = 'tienda.html'; }, 850);
+                } else {
+                    btn.disabled = false;
+                    btn.classList.remove('confirmed');
+                    btn.innerText = "Entrar a la Plataforma";
+
+                    intentosFallidos++;
+                    const aviso = document.getElementById('intentos-aviso');
+                    aviso.innerText = `${intentosFallidos} intento${intentosFallidos === 1 ? '' : 's'} fallido${intentosFallidos === 1 ? '' : 's'}`;
+
+                    if (intentosFallidos >= 3) {
+                        mostrarNotificacion('Demasiados intentos seguidos. Espera 5 segundos o restablece tu contraseña.', 'danger');
+                        activarPausaTemporal(5);
+                    } else {
+                        mostrarNotificacion('Correo o contraseña incorrectos. Verifica o crea una cuenta nueva.', 'danger');
+                    }
+                }
+            }, 450);
+        }
+
+        function handleRegisterSubmit(event) {
+            event.preventDefault();
+            ocultarNotificacion();
+
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim().toLowerCase();
+            const molienda = document.getElementById('reg-grind').value;
+            const plan = document.getElementById('reg-plan').value;
+            const password = document.getElementById('reg-password').value.trim();
+            const confirmPass = document.getElementById('reg-password-confirm').value.trim();
+
+            if (password !== confirmPass) {
+                mostrarNotificacion('Las contraseñas no coinciden. Revísalas para crear la cuenta.', 'danger');
+                return;
+            }
+
+            let usuarios = obtenerUsuarios();
+            const yaExiste = usuarios.some(u => u.email === email);
+
+            if (yaExiste) {
+                mostrarNotificacion('Este correo ya está registrado. Inicia sesión directamente.', 'danger');
+                return;
+            }
+
+            usuarios.push({
+                email: email,
+                pass: password,
+                nombre: name,
+                molienda: molienda,
+                plan: plan
+            });
+            guardarUsuarios(usuarios);
+
+            document.getElementById('reg-name').value = '';
+            document.getElementById('reg-email').value = '';
+            document.getElementById('reg-password').value = '';
+            document.getElementById('reg-password-confirm').value = '';
+            medirFuerzaClave();
+
+            toggleAuthView('login');
+            document.getElementById('login-email').value = email;
+            detectarCuenta();
+            mostrarNotificacion(`¡Cuenta creada para ${name}! Preferencia guardada: ${molienda}.`, 'success');
+        }
+
+        function triggerSSO(provider) {
+            const correoSocial = `usuario_${provider.toLowerCase()}@gmail.com`;
+            mostrarNotificacion(`Accediendo con ${provider}...`, 'success');
+            localStorage.setItem('usuarioLogueado', JSON.stringify({
+                email: correoSocial,
+                rol: 'cliente',
+                nombre: `Usuario ${provider}`
+            }));
+            localStorage.setItem('usuarioActivo', correoSocial);
+            localStorage.setItem('rolUsuario', 'cliente');
+            setTimeout(() => { window.location.href = 'tienda.html'; }, 850);
+        }
+
+        function openResetModal() {
+            const actual = document.getElementById('login-email').value.trim();
+            if (actual) {
+                document.getElementById('reset-email').value = actual;
+            }
+            document.getElementById('recovery-modal').classList.add('active');
+        }
+
+        function closeResetModal() {
+            document.getElementById('recovery-modal').classList.remove('active');
+        }
+
+        function handlePasswordReset(event) {
+            event.preventDefault();
+            const email = document.getElementById('reset-email').value.trim().toLowerCase();
+            closeResetModal();
+            mostrarNotificacion(`Si el correo ${email} existe en el sistema, recibirás un mensaje de recuperación.`, 'success');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const recordado = localStorage.getItem(KEY_CORREO);
+            if (recordado) {
+                document.getElementById('login-email').value = recordado;
+                document.getElementById('recordar-correo').checked = true;
+                detectarCuenta();
+            }
+        });
+    </script>
+</body>
+</html>

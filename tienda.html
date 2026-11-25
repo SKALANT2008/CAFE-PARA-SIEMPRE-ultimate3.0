@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Oficial Enterprise | Café para Siempre - Támesis</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2C1810;
+            --primary-dark: #160A05;
+            --accent: #D4A373;
+            --accent-hover: #C28F5F;
+            --store-orange: #FF9900;
+            --store-orange-hover: #E58600;
+            --green-leaf: #2D5A27;
+            --green-hover: #1E3F1A;
+            --bg-body: #F4F1EA;
+            --surface-card: #FFFFFF;
+            --surface-subtle: #F9F7F2;
+            --border-color: #E2D7C5;
+            --text-main: #1F1F1F;
+            --text-muted: #5F666D;
+            --white: #FFFFFF;
+            --danger: #C9182B;
+            --star-gold: #E59819;
+            --shadow-sm: 0 4px 12px rgba(44, 24, 16, 0.05);
+            --shadow-md: 0 12px 28px rgba(44, 24, 16, 0.09);
+            --shadow-lg: 0 24px 48px rgba(44, 24, 16, 0.16);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 26px;
+        }
+
+        body.dark-mode {
+            --primary: #140B07;
+            --primary-dark: #090402;
+            --accent: #E2B485;
+            --store-orange: #F59E0B;
+            --store-orange-hover: #D97706;
+            --green-leaf: #4ADE80;
+            --green-hover: #22C55E;
+            --bg-body: #16110F;
+            --surface-card: #221A16;
+            --surface-subtle: #2D231E;
+            --border-color: #46372F;
+            --text-main: #F7F4EE;
+            --text-muted: #CFC3B8;
+            --star-gold: #FBBF24;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.42);
+            --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.55);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        .ico {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            display: inline-block;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        .top-benefit-bar {
+            background: #2D5A27;
+            color: var(--white);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 8px 16px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        header {
+            position: fixed;
+            top: 34px;
+            left: 0;
+            width: 100%;
+            background: rgba(28, 15, 10, 0.97);
+            backdrop-filter: blur(14px);
+            color: var(--white);
+            padding: 12px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.22);
+            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.28);
+            gap: 16px;
+        }
+
+        .logo-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .logo-brand img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            object-fit: cover;
+        }
+
+        .logo-brand-text h1 {
+            font-size: 1.18rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.3px;
+        }
+
+        .logo-brand-text span {
+            font-size: 0.72rem;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+
+        .search-bar-header {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-bar-header input {
+            width: 100%;
+            padding: 10px 18px 10px 40px;
+            border-radius: 30px;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--white);
+            font-size: 0.88rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-bar-header input::placeholder {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .search-bar-header input:focus {
+            background: var(--surface-card);
+            color: var(--text-main);
+            border-color: var(--store-orange);
+        }
+
+        .search-icon-wrap {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            pointer-events: none;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .profile-menu-wrap {
+            position: relative;
+        }
+
+        .profile-trigger-btn {
+            background: rgba(212, 163, 115, 0.16);
+            border: 1px solid var(--accent);
+            padding: 5px 14px 5px 6px;
+            border-radius: 30px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-weight: 700;
+            font-size: 0.86rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .profile-trigger-btn:hover {
+            background: rgba(212, 163, 115, 0.28);
+        }
+
+        .profile-avatar-mini {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--accent);
+        }
+
+        .profile-dropdown {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            width: 270px;
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: 2100;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .profile-dropdown.active {
+            display: flex;
+        }
+
+        .dropdown-user-card {
+            padding: 15px;
+            background: var(--surface-subtle);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dropdown-user-card img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
+        .dropdown-user-meta h4 {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .dropdown-user-meta span {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .dropdown-menu-list {
+            list-style: none;
+            padding: 6px 0;
+        }
+
+        .dropdown-menu-list a,
+        .dropdown-menu-list button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 16px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.86rem;
+            font-weight: 600;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.18s ease, color 0.18s ease;
+        }
+
+        .dropdown-menu-list a:hover,
+        .dropdown-menu-list button:hover {
+            background: var(--surface-subtle);
+            color: var(--store-orange);
+        }
+
+        .dropdown-sep {
+            height: 1px;
+            background: var(--border-color);
+            margin: 4px 0;
+        }
+
+        .btn-cart-trigger {
+            background: var(--store-orange);
+            color: #160A05;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(255, 153, 0, 0.28);
+        }
+
+        .btn-cart-trigger:hover {
+            background: var(--store-orange-hover);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .cart-badge {
+            background: var(--danger);
+            color: var(--white);
+            font-size: 0.72rem;
+            padding: 2px 7px;
+            border-radius: 12px;
+            font-weight: 800;
+        }
+
+        .store-subnav {
+            margin-top: 90px;
+            background: #23120B;
+            padding: 10px 4%;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.18);
+        }
+
+        .store-subnav a {
+            color: rgba(255, 255, 255, 0.88);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .store-subnav a:hover {
+            color: var(--store-orange);
+        }
+
+        main {
+            padding: 24px 4% 80px;
+            max-width: 1480px;
+            margin: 0 auto;
+        }
+
+        .hero-store-grid {
+            display: grid;
+            grid-template-columns: 1.65fr 1fr;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 992px) {
+            .hero-store-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hero-main-box {
+            background: linear-gradient(135deg, #2C1810 0%, #140905 100%);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            color: var(--white);
+            border: 1px solid rgba(212, 163, 115, 0.25);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .hero-main-box h2 {
+            font-size: 2.05rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .hero-main-box p {
+            color: var(--accent);
+            font-size: 0.95rem;
+            line-height: 1.55;
+            max-width: 580px;
+        }
+
+        .hero-perks-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-perk-pill {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--white);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-store-cta {
+            background: var(--store-orange);
+            color: #160A05;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            transition: all 0.2s ease;
+        }
+
+        .btn-store-cta:hover {
+            background: var(--store-orange-hover);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .discount-spotlight-card {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--store-orange);
+            padding: 26px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .discount-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .discount-tag {
+            background: var(--danger);
+            color: var(--white);
+            font-size: 0.74rem;
+            font-weight: 800;
+            padding: 5px 11px;
+            border-radius: 8px;
+            text-transform: uppercase;
+        }
+
+        .save-pill {
+            background: rgba(45, 90, 39, 0.15);
+            color: var(--green-leaf);
+            font-size: 0.76rem;
+            font-weight: 800;
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+
+        .price-compare-box {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .price-now {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--green-leaf);
+        }
+
+        .price-old {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-weight: 600;
+        }
+
+        .altitude-card {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 26px;
+            margin-bottom: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .altitude-card h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .altitude-card p {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .altitude-card input[type="range"] {
+            width: 100%;
+            accent-color: var(--store-orange);
+            cursor: pointer;
+        }
+
+        .altitude-metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .altitude-metric-box {
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+        }
+
+        .altitude-metric-box span {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .altitude-metric-box strong {
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-top: 4px;
+            display: block;
+        }
+
+        .store-strip-card {
+            background: var(--surface-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            padding: 20px 24px;
+            margin-bottom: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .store-strip-card h3 {
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-buy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 14px;
+        }
+
+        .quick-buy-item {
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .btn-mini-buy {
+            background: var(--store-orange);
+            color: #160A05;
+            border: none;
+            padding: 8px 13px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-mini-buy:hover {
+            background: var(--store-orange-hover);
+            color: var(--white);
+        }
+
+        .controls-wrapper {
+            background: var(--surface-card);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 28px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .category-pills {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .cat-btn {
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .cat-btn.active,
+        .cat-btn:hover {
+            background: var(--store-orange);
+            color: #160A05;
+            border-color: var(--store-orange);
+        }
+
+        .filter-selectors {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 14px;
+        }
+
+        .select-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .select-box select {
+            padding: 8px 13px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            outline: none;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+            gap: 26px;
+            margin-bottom: 42px;
+        }
+
+        .product-card {
+            background: var(--surface-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+        }
+
+        .bag-stage {
+            height: 225px;
+            background: radial-gradient(circle at center, #3A2217 0%, #170A05 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 16px;
+        }
+
+        .bag-real {
+            width: 126px;
+            height: 178px;
+            background: linear-gradient(135deg, #4A2B1D 0%, #22120B 100%);
+            border-radius: 10px 10px 16px 16px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 8px;
+            position: relative;
+            border: 1px solid rgba(212, 163, 115, 0.4);
+        }
+
+        .bag-valve {
+            width: 12px;
+            height: 12px;
+            background: #0A0301;
+            border-radius: 50%;
+            border: 1.5px solid var(--accent);
+            position: absolute;
+            top: 12px;
+        }
+
+        .bag-label {
+            background: #FFFEFA;
+            width: 100%;
+            padding: 10px 4px;
+            text-align: center;
+            border-radius: 6px;
+            margin-top: 28px;
+        }
+
+        .bag-label-brand {
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: #160A05;
+            text-transform: uppercase;
+            border-bottom: 1.5px solid var(--accent);
+            padding-bottom: 2px;
+            margin-bottom: 3px;
+        }
+
+        .bag-label-var {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #2D5A27;
+        }
+
+        .badge-id {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.72);
+            color: var(--white);
+            font-size: 0.72rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        .badge-off {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--store-orange);
+            color: #160A05;
+            font-size: 0.72rem;
+            padding: 4px 9px;
+            border-radius: 6px;
+            font-weight: 800;
+        }
+
+        .product-body {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .rating-line {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--star-gold);
+            margin-bottom: 10px;
+        }
+
+        .specs-list {
+            font-size: 0.83rem;
+            line-height: 1.5;
+        }
+
+        .specs-list div {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 4px;
+            margin-bottom: 5px;
+            gap: 10px;
+        }
+
+        .specs-list span:first-child {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .specs-list span:last-child {
+            color: var(--text-main);
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .product-footer {
+            padding: 0 20px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .price-stack {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-main {
+            font-size: 1.28rem;
+            font-weight: 800;
+            color: var(--green-leaf);
+        }
+
+        .price-strike {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-weight: 600;
+        }
+
+        .btn-add-cart {
+            background: var(--store-orange);
+            color: #160A05;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.84rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--store-orange-hover);
+            color: var(--white);
+        }
+
+        .combos-section {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 26px;
+            margin-bottom: 36px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .combos-section h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .combos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .combo-card {
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .combo-card h4 {
+            font-size: 0.94rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .combo-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .reviews-section {
+            background: var(--surface-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            margin-bottom: 36px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .reviews-section h3 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 22px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .review-card {
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .review-stars {
+            color: var(--star-gold);
+            font-size: 0.95rem;
+            font-weight: 800;
+        }
+
+        .review-bought-tag {
+            display: inline-block;
+            background: rgba(212, 163, 115, 0.2);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .review-comment {
+            font-size: 0.88rem;
+            color: var(--text-main);
+            line-height: 1.55;
+        }
+
+        .review-author-line {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--text-muted);
+        }
+
+        .review-form-card {
+            background: var(--surface-subtle);
+            border: 1px dashed var(--accent);
+            border-radius: var(--radius-md);
+            padding: 24px;
+        }
+
+        .review-form-card h4 {
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 16px;
+        }
+
+        .review-form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+        }
+
+        .review-form-grid .full-span {
+            grid-column: 1 / -1;
+        }
+
+        .sub-banner {
+            background: linear-gradient(135deg, #2D5A27 0%, #173314 100%);
+            border-radius: var(--radius-lg);
+            padding: 34px;
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(212, 163, 115, 0.3);
+        }
+
+        .sub-kicker {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.14);
+            color: var(--accent);
+            font-size: 0.76rem;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 8px;
+        }
+
+        .sub-banner h3 {
+            font-size: 1.65rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: var(--white);
+        }
+
+        .sub-banner p {
+            color: #F4F1EA;
+            font-size: 0.94rem;
+            max-width: 620px;
+            line-height: 1.5;
+        }
+
+        .modal-overlay,
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.68);
+            backdrop-filter: blur(6px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2500;
+            padding: 20px;
+        }
+
+        .modal-overlay.active,
+        .drawer-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: var(--surface-card);
+            width: 100%;
+            max-width: 500px;
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -440px;
+            width: 100%;
+            max-width: 420px;
+            height: 100vh;
+            background: var(--surface-card);
+            color: var(--text-main);
+            z-index: 2600;
+            box-shadow: -15px 0 45px rgba(0, 0, 0, 0.35);
+            transition: right 0.32s ease;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid var(--border-color);
+        }
+
+        .cart-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            background: #23120B;
+            color: var(--white);
+            padding: 20px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .drawer-body {
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border-color);
+            gap: 12px;
+        }
+
+        .drawer-footer {
+            padding: 20px;
+            background: var(--surface-subtle);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 14px;
+            background: var(--store-orange);
+            color: #160A05;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-checkout:hover {
+            background: var(--store-orange-hover);
+            color: var(--white);
+        }
+
+        .form-row {
+            margin-bottom: 14px;
+        }
+
+        .form-row label {
+            display: block;
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .form-row input,
+        .form-row select,
+        .form-row textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            font-size: 0.88rem;
+            outline: none;
+            background: var(--bg-body);
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-benefit-bar">
+        <span>Envío gratis desde $100.000 COP</span>
+        <span>•</span>
+        <span>1 punto cashback por cada $1.000 COP</span>
+        <span>•</span>
+        <span>Descuentos directos de Finca La Sierra</span>
+    </div>
+
+    <header>
+        <a href="tienda.html" class="logo-brand">
+            <img src="https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg" alt="Támesis">
+            <div class="logo-brand-text">
+                <h1>Café para Siempre</h1>
+                <span>Tienda Oficial • Támesis, Antioquia</span>
+            </div>
+        </a>
+
+        <div class="search-bar-header">
+            <span class="search-icon-wrap">
+                <svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <input type="text" id="input-buscar" placeholder="Buscar variedad, presentación, descuento o notas..." onkeyup="ejecutarFiltros()">
+        </div>
+
+        <div class="nav-actions">
+            <div class="profile-menu-wrap">
+                <button type="button" class="profile-trigger-btn" onclick="toggleProfileDropdown(event)">
+                    <img src="https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg" alt="Avatar usuario" class="profile-avatar-mini">
+                    <span id="label-usuario">Cliente</span>
+                    <svg class="ico" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="dropdown-user-card">
+                        <img src="https://alcompasdeantioquia.com/wp-content/uploads/2022/10/800px-Tamesis_Antioquia.jpg" alt="Foto de perfil">
+                        <div class="dropdown-user-meta">
+                            <h4 id="dd-user-name">Cliente Registrado</h4>
+                            <span id="dd-user-email">cliente@cafeparasiempre.com</span>
+                        </div>
+                    </div>
+
+                    <ul class="dropdown-menu-list">
+                        <li>
+                            <a href="perfil.html">
+                                <svg class="ico" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                Ver Perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="perfil.html#configuracion">
+                                <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+                                Configuración
+                            </a>
+                        </li>
+                        <li>
+                            <button type="button" onclick="toggleDarkMode()">
+                                <svg class="ico" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                                <span id="txt-mode-toggle">Modo Oscuro</span>
+                            </button>
+                        </li>
+                        <li class="dropdown-sep"></li>
+                        <li>
+                            <a href="login.html" onclick="cerrarSesion()">
+                                <svg class="ico" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                                Cambiar Cuenta / Cerrar Sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <button type="button" class="btn-cart-trigger" onclick="toggleCartDrawer()">
+                <svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                Carrito
+                <span class="cart-badge" id="badge-cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="store-subnav">
+        <a href="#catalogo">
+            <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Catálogo Completo
+        </a>
+        <a href="#descuentos">
+            <svg class="ico" viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+            Descuentos Activos
+        </a>
+        <a href="#simulador-altura">
+            <svg class="ico" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Simulador de Altura
+        </a>
+        <a href="#recompra">
+            <svg class="ico" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Comprar de Nuevo
+        </a>
+        <a href="#resenas">
+            <svg class="ico" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Reseñas
+        </a>
+        <a href="#suscripcion">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            En Tu Mesa Sin Parar
+        </a>
+    </nav>
+
+    <main>
+        <section class="hero-store-grid" id="descuentos">
+            <div class="hero-main-box">
+                <div>
+                    <h2>Lotes de Támesis Directo de Finca La Sierra</h2>
+                    <p>Compra en grano o molido con precios directos de finca en Vereda La Alacena, descuentos activos y acumulación de puntos cashback en cada pedido.</p>
+                </div>
+
+                <div class="hero-perks-row">
+                    <span class="hero-perk-pill">
+                        <svg class="ico" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                        Precio Directo sin Intermediarios
+                    </span>
+                    <span class="hero-perk-pill">
+                        <svg class="ico" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        Envío Gratis desde $100.000
+                    </span>
+                </div>
+
+                <button type="button" class="btn-store-cta" onclick="window.scrollTo({top: 640, behavior: 'smooth'})">
+                    Ver Catálogo y Ofertas
+                    <svg class="ico" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+
+            <div class="discount-spotlight-card">
+                <div>
+                    <div class="discount-top-row">
+                        <span class="discount-tag">10% de Descuento</span>
+                        <span class="save-pill">Ahorras $3.500 COP</span>
+                    </div>
+                    <h3 style="font-size:1.18rem; font-weight:800; color:var(--text-main); margin-top:12px; margin-bottom:6px;">Bolsa Borbón Rosado Honey (500g)</h3>
+                    <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.45;">Empaque con válvula desgasificadora y precio promocional activo en tienda.</p>
+                    <div class="price-compare-box">
+                        <span class="price-now">$31.500</span>
+                        <span class="price-old">$35.000</span>
+                    </div>
+                </div>
+                <button type="button" class="btn-store-cta" style="width:100%; justify-content:center;" onclick="agregarAlCarrito('CPS-101')">
+                    Agregar con Descuento
+                </button>
+            </div>
+        </section>
+
+        <section class="altitude-card" id="simulador-altura">
+            <h3>
+                <svg class="ico" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Simulador de Altitud — Finca La Sierra (Támesis)
+            </h3>
+            <p>Desliza para explorar cómo cambia el perfil de taza de nuestros lotes entre 1,700 y 2,000 m.s.n.m.</p>
+            <input type="range" id="rango-altura" min="1700" max="2000" step="50" value="1900" oninput="actualizarSimuladorAltura(this.value)">
+            <div class="altitude-metrics-grid">
+                <div class="altitude-metric-box">
+                    <span>Altitud Seleccionada</span>
+                    <strong id="alt-valor">1,900 m.s.n.m.</strong>
+                </div>
+                <div class="altitude-metric-box">
+                    <span>Perfil Destacado</span>
+                    <strong id="alt-perfil">Frutal & Miel Silvestre</strong>
+                </div>
+                <div class="altitude-metric-box">
+                    <span>Lote Sugerido</span>
+                    <strong id="alt-lote">Borbón Rosado Honey</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="store-strip-card" id="recompra">
+            <h3>
+                <svg class="ico" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                Comprar de Nuevo
+            </h3>
+            <div class="quick-buy-grid">
+                <div class="quick-buy-item">
+                    <div>
+                        <div style="font-size:0.88rem; font-weight:800; color:var(--text-main);">Castillo Tradición (1000g)</div>
+                        <div style="font-size:0.82rem; font-weight:700; color:var(--green-leaf);">$43.200 <span style="text-decoration:line-through; color:var(--text-muted); font-size:0.75rem;">$48.000</span></div>
+                    </div>
+                    <button type="button" class="btn-mini-buy" onclick="agregarAlCarrito('CPS-102')">+ Agregar</button>
+                </div>
+                <div class="quick-buy-item">
+                    <div>
+                        <div style="font-size:0.88rem; font-weight:800; color:var(--text-main);">Caturra Especial (500g)</div>
+                        <div style="font-size:0.82rem; font-weight:700; color:var(--green-leaf);">$25.200 <span style="text-decoration:line-through; color:var(--text-muted); font-size:0.75rem;">$28.000</span></div>
+                    </div>
+                    <button type="button" class="btn-mini-buy" onclick="agregarAlCarrito('CPS-104')">+ Agregar</button>
+                </div>
+                <div class="quick-buy-item">
+                    <div>
+                        <div style="font-size:0.88rem; font-weight:800; color:var(--text-main);">Tabi Reserva (1000g)</div>
+                        <div style="font-size:0.82rem; font-weight:700; color:var(--green-leaf);">$56.000</div>
+                    </div>
+                    <button type="button" class="btn-mini-buy" onclick="agregarAlCarrito('CPS-106')">+ Agregar</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="controls-wrapper" id="catalogo">
+            <div class="category-pills">
+                <button type="button" class="cat-btn active" onclick="filtrarCategoria('todos', this)">Todos los Productos</button>
+                <button type="button" class="cat-btn" onclick="filtrarCategoria('Granos', this)">Café en Grano</button>
+                <button type="button" class="cat-btn" onclick="filtrarCategoria('Molido', this)">Café Molido</button>
+                <button type="button" class="cat-btn" onclick="filtrarCategoria('Edicion', this)">Ediciones Especiales</button>
+            </div>
+
+            <div class="filter-selectors">
+                <div style="display:flex; gap:14px; flex-wrap:wrap;">
+                    <div class="select-box">
+                        <label for="sel-variedad">Variedad:</label>
+                        <select id="sel-variedad" onchange="ejecutarFiltros()">
+                            <option value="todos">Todas</option>
+                            <option value="Borbón Rosado">Borbón Rosado</option>
+                            <option value="Castillo">Castillo</option>
+                            <option value="Geisha">Geisha</option>
+                            <option value="Caturra">Caturra</option>
+                            <option value="Sidra">Sidra</option>
+                            <option value="Tabi">Tabi</option>
+                        </select>
+                    </div>
+
+                    <div class="select-box">
+                        <label for="sel-oferta">Ofertas:</label>
+                        <select id="sel-oferta" onchange="ejecutarFiltros()">
+                            <option value="todos">Todos los precios</option>
+                            <option value="con-descuento">Solo con descuento</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="select-box">
+                    <label for="sel-orden">Ordenar por:</label>
+                    <select id="sel-orden" onchange="ejecutarFiltros()">
+                        <option value="destacado">Destacados</option>
+                        <option value="precio-bajo">Precio: Menor a Mayor</option>
+                        <option value="precio-alto">Precio: Mayor a Menor</option>
+                        <option value="mayor-descuento">Mayor Descuento</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-grid" id="container-productos"></section>
+
+        <section class="combos-section">
+            <h3>
+                <svg class="ico" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                Combos y Presentaciones para Llevar
+            </h3>
+            <div class="combos-grid">
+                <div class="combo-card">
+                    <div>
+                        <h4>Pack Caturra Finca (500g)</h4>
+                        <p>Lleva grano fresco directo de finca con descuento activo y puntos cashback.</p>
+                    </div>
+                    <button type="button" class="btn-add-cart" onclick="agregarAlCarrito('CPS-104')">Agregar ($25.200)</button>
+                </div>
+                <div class="combo-card">
+                    <div>
+                        <h4>Reserva Familiar 1 kg</h4>
+                        <p>Presentación de 1000g de Castillo Tradición para consumo continuo.</p>
+                    </div>
+                    <button type="button" class="btn-add-cart" onclick="agregarAlCarrito('CPS-102')">Agregar ($43.200)</button>
+                </div>
+                <div class="combo-card">
+                    <div>
+                        <h4>Edición Especial Geisha (250g)</h4>
+                        <p>Lote de altura en Támesis con trazabilidad y descuento del 15%.</p>
+                    </div>
+                    <button type="button" class="btn-add-cart" onclick="agregarAlCarrito('CPS-103')">Agregar ($38.250)</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section" id="resenas">
+            <h3>Reseñas de Quienes Ya Compraron</h3>
+
+            <div class="reviews-grid" id="container-resenas"></div>
+
+            <div class="review-form-card">
+                <h4>Escribe tu reseña de compra</h4>
+                <form onsubmit="publicarResena(event)">
+                    <div class="review-form-grid">
+                        <div class="form-row">
+                            <label for="res-nombre">Tu Nombre</label>
+                            <input type="text" id="res-nombre" required placeholder="Escribe tu nombre">
+                        </div>
+
+                        <div class="form-row">
+                            <label for="res-ciudad">Ciudad</label>
+                            <select id="res-ciudad" required>
+                                <option value="Támesis">Támesis</option>
+                                <option value="Medellín">Medellín</option>
+                                <option value="Bogotá">Bogotá</option>
+                                <option value="Cali">Cali</option>
+                                <option value="Manizales">Manizales</option>
+                                <option value="Pereira">Pereira</option>
+                                <option value="Envigado">Envigado</option>
+                                <option value="Sabaneta">Sabaneta</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="res-producto">¿Qué producto compraste?</label>
+                            <select id="res-producto" required>
+                                <option value="Borbón Rosado Honey (500g)">Borbón Rosado Honey (500g)</option>
+                                <option value="Castillo Tradición (1000g)">Castillo Tradición (1000g)</option>
+                                <option value="Geisha Aniversario (250g)">Geisha Aniversario (250g)</option>
+                                <option value="Caturra Especial Finca (500g)">Caturra Especial Finca (500g)</option>
+                                <option value="Sidra Lote Especial (250g)">Sidra Lote Especial (250g)</option>
+                                <option value="Tabi Reserva (1000g)">Tabi Reserva (1000g)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="res-estrellas">Calificación</label>
+                            <select id="res-estrellas" required>
+                                <option value="5">★★★★★ — 5 Estrellas</option>
+                                <option value="4">★★★★☆ — 4 Estrellas</option>
+                                <option value="3">★★★☆☆ — 3 Estrellas</option>
+                                <option value="2">★★☆☆☆ — 2 Estrellas</option>
+                                <option value="1">★☆☆☆☆ — 1 Estrella</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row full-span">
+                            <label for="res-comentario">Tu Comentario</label>
+                            <textarea id="res-comentario" rows="3" required placeholder="Cuéntanos qué te pareció el producto que compraste..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-store-cta" style="margin-top:6px;">
+                        Publicar Reseña
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section class="sub-banner" id="suscripcion">
+            <div>
+                <span class="sub-kicker">Plan Suscriptor</span>
+                <h3>Café para Siempre: En Tu Mesa Sin Parar</h3>
+                <p>Si compras con este plan, tu café llega cada mes con <strong>10% de descuento automático</strong>, acumulación de puntos y prioridad en los lotes de Finca La Sierra. Porque lo bueno se queda <strong>para siempre</strong>.</p>
+            </div>
+            <button type="button" class="btn-store-cta" onclick="window.location.href='suscripcion.html?plan=en-tu-mesa-sin-parar'">
+                Unirme a En Tu Mesa Sin Parar
+            </button>
+        </section>
+    </main>
+
+    <div class="drawer-overlay" id="drawer-overlay" onclick="toggleCartDrawer()"></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-label="Carrito de compras">
+        <div class="drawer-header">
+            <h3 style="font-size:1.1rem; font-weight:800;">Tu Carrito</h3>
+            <button type="button" onclick="toggleCartDrawer()" style="background:none; border:none; color:white; font-size:1.45rem; cursor:pointer;">&times;</button>
+        </div>
+
+        <div class="drawer-body" id="cart-list-container">
+            <p style="text-align:center; color:var(--text-muted); margin-top:45px; font-weight:600;">Tu carrito está vacío.</p>
+        </div>
+
+        <div class="drawer-footer">
+            <div style="font-size:0.9rem; margin-bottom:14px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                    <span>Subtotal:</span>
+                    <span id="val-subtotal" style="font-weight:700;">$0</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                    <span>Ahorro en descuentos:</span>
+                    <span id="val-ahorro" style="font-weight:700; color:var(--green-leaf);">$0</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                    <span>Envío:</span>
+                    <span id="val-envio-monto" style="font-weight:700;">$12.000</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.18rem; color:var(--text-main); border-top:1px solid var(--border-color); padding-top:8px;">
+                    <span>Total:</span>
+                    <span id="val-total">$0</span>
+                </div>
+            </div>
+            <button type="button" class="btn-checkout" onclick="abrirCheckoutModal()">Proceder al Pago</button>
+        </div>
+    </aside>
+
+    <div class="modal-overlay" id="modal-checkout">
+        <div class="modal-card">
+            <button type="button" class="modal-close" onclick="cerrarCheckoutModal()">&times;</button>
+            <h3 style="color:var(--text-main); font-weight:800; font-size:1.25rem; margin-bottom:16px;">Confirmar Pedido</h3>
+
+            <form onsubmit="confirmarPedidoFinal(event)">
+                <div class="form-row">
+                    <label for="chk-nombre">Nombre del Destinatario</label>
+                    <input type="text" id="chk-nombre" required placeholder="Nombre completo">
+                </div>
+                <div class="form-row">
+                    <label for="chk-direccion">Dirección de Entrega</label>
+                    <input type="text" id="chk-direccion" required placeholder="Dirección completa o vereda en Támesis">
+                </div>
+                <div class="form-row">
+                    <label for="chk-pago">Método de Pago</label>
+                    <select id="chk-pago" required>
+                        <option value="pse">PSE / Transferencia Bancaria</option>
+                        <option value="nequi">Nequi / Daviplata</option>
+                        <option value="tarjeta">Tarjeta Débito / Crédito</option>
+                        <option value="contraentrega">Pago Contraentrega</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-checkout" style="margin-top:12px;">
+                    Pagar <span id="chk-total-badge">$0</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const PRODUCTOS_TIENDA = [
+            {
+                id: "CPS-101",
+                nombre: "Borbón Rosado Honey",
+                categoria: "Granos",
+                variedad: "Borbón Rosado",
+                peso: "500g",
+                precioOriginal: 35000,
+                precioOferta: 31500,
+                descuentoPct: 10,
+                notas: "Miel silvestre y frutos dulces",
+                altitud: "1,900 m.s.n.m.",
+                rating: "4.9 (128)"
+            },
+            {
+                id: "CPS-102",
+                nombre: "Castillo Tradición",
+                categoria: "Molido",
+                variedad: "Castillo",
+                peso: "1000g",
+                precioOriginal: 48000,
+                precioOferta: 43200,
+                descuentoPct: 10,
+                notas: "Cacao y panela tradicional",
+                altitud: "1,750 m.s.n.m.",
+                rating: "4.8 (95)"
+            },
+            {
+                id: "CPS-103",
+                nombre: "Geisha Aniversario",
+                categoria: "Edicion",
+                variedad: "Geisha",
+                peso: "250g",
+                precioOriginal: 45000,
+                precioOferta: 38250,
+                descuentoPct: 15,
+                notas: "Notas florales y cítricas",
+                altitud: "2,000 m.s.n.m.",
+                rating: "5.0 (210)"
+            },
+            {
+                id: "CPS-104",
+                nombre: "Caturra Especial Finca",
+                categoria: "Granos",
+                variedad: "Caturra",
+                peso: "500g",
+                precioOriginal: 28000,
+                precioOferta: 25200,
+                descuentoPct: 10,
+                notas: "Caramelo y nuez tostada",
+                altitud: "1,800 m.s.n.m.",
+                rating: "4.8 (74)"
+            },
+            {
+                id: "CPS-105",
+                nombre: "Sidra Lote Especial",
+                categoria: "Edicion",
+                variedad: "Sidra",
+                peso: "250g",
+                precioOriginal: 52000,
+                precioOferta: 52000,
+                descuentoPct: 0,
+                notas: "Frutos rojos maduros",
+                altitud: "1,950 m.s.n.m.",
+                rating: "4.9 (88)"
+            },
+            {
+                id: "CPS-106",
+                nombre: "Tabi Reserva",
+                categoria: "Molido",
+                variedad: "Tabi",
+                peso: "1000g",
+                precioOriginal: 56000,
+                precioOferta: 56000,
+                descuentoPct: 0,
+                notas: "Cuerpo alto y cacao intenso",
+                altitud: "1,850 m.s.n.m.",
+                rating: "4.7 (52)"
+            }
+        ];
+
+        let resenasTienda = [
+            {
+                nombre: "Camila Restrepo",
+                ciudad: "Bogotá",
+                producto: "Borbón Rosado Honey (500g)",
+                estrellas: 5,
+                comentario: "Llegó muy rápido y con el descuento aplicado. Muy buen sabor desde la primera bolsa."
+            },
+            {
+                nombre: "Mateo Jaramillo",
+                ciudad: "Medellín",
+                producto: "Geisha Aniversario (250g)",
+                estrellas: 5,
+                comentario: "Excelente presentación y calidad de lote. Vale totalmente la pena pedirlo aquí."
+            },
+            {
+                nombre: "Sofía Valencia",
+                ciudad: "Támesis",
+                producto: "Castillo Tradición (1000g)",
+                estrellas: 4,
+                comentario: "Rinde bastante para el hogar y mantiene muy buen aroma en su empaque."
+            }
+        ];
+
+        let carrito = [];
+        let categoriaActual = "todos";
+
+        window.onload = function () {
+            const usuario = localStorage.getItem("usuarioActivo") || "Cliente";
+            const nombre = localStorage.getItem("nombreCliente") || usuario.split("@")[0];
+            const fotoGuardada = localStorage.getItem("fotoPerfilUsuario");
+
+            document.getElementById("label-usuario").innerText = nombre;
+            document.getElementById("dd-user-name").innerText = nombre;
+            document.getElementById("dd-user-email").innerText = usuario.includes("@")
+                ? usuario
+                : `${usuario.toLowerCase().replace(/\s+/g, "")}@cafeparasiempre.com`;
+            document.getElementById("chk-nombre").value = nombre;
+
+            if (fotoGuardada) {
+                document.querySelector(".profile-avatar-mini").src = fotoGuardada;
+                document.querySelector(".dropdown-user-card img").src = fotoGuardada;
+            }
+
+            if (localStorage.getItem("theme_mode") === "dark") {
+                document.body.classList.add("dark-mode");
+                document.getElementById("txt-mode-toggle").innerText = "Modo Claro";
+            }
+
+            actualizarSimuladorAltura(document.getElementById("rango-altura").value);
+            ejecutarFiltros();
+            renderizarResenas();
+        };
+
+        document.addEventListener("click", function (e) {
+            const dropdown = document.getElementById("profileDropdown");
+            const trigger = document.querySelector(".profile-trigger-btn");
+            if (dropdown && trigger && !dropdown.contains(e.target) && !trigger.contains(e.target)) {
+                dropdown.classList.remove("active");
+            }
+        });
+
+        function toggleProfileDropdown(e) {
+            e.stopPropagation();
+            document.getElementById("profileDropdown").classList.toggle("active");
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            const isDark = document.body.classList.contains("dark-mode");
+            localStorage.setItem("theme_mode", isDark ? "dark" : "light");
+            document.getElementById("txt-mode-toggle").innerText = isDark ? "Modo Claro" : "Modo Oscuro";
+        }
+
+        function actualizarSimuladorAltura(valor) {
+            const alt = parseInt(valor, 10);
+            document.getElementById("alt-valor").innerText = `${alt.toLocaleString("es-CO")} m.s.n.m.`;
+
+            if (alt >= 1950) {
+                document.getElementById("alt-perfil").innerText = "Floral & Frutal de Altura";
+                document.getElementById("alt-lote").innerText = "Geisha Aniversario";
+            } else if (alt >= 1850) {
+                document.getElementById("alt-perfil").innerText = "Frutal & Miel Silvestre";
+                document.getElementById("alt-lote").innerText = "Borbón Rosado Honey";
+            } else {
+                document.getElementById("alt-perfil").innerText = "Cacao, Caramelo & Panela";
+                document.getElementById("alt-lote").innerText = "Castillo Tradición";
+            }
+        }
+
+        function renderizarResenas() {
+            const container = document.getElementById("container-resenas");
+            container.innerHTML = "";
+
+            resenasTienda.forEach((item) => {
+                const llenas = "★".repeat(item.estrellas);
+                const vacias = "☆".repeat(5 - item.estrellas);
+
+                const card = document.createElement("article");
+                card.className = "review-card";
+                card.innerHTML = `
+                    <div>
+                        <div class="review-stars">${llenas}${vacias} (${item.estrellas}/5)</div>
+                        <div style="margin:8px 0 10px;">
+                            <span class="review-bought-tag">Compró: ${item.producto}</span>
+                        </div>
+                        <p class="review-comment">"${item.comentario}"</p>
+                    </div>
+                    <div class="review-author-line">${item.nombre} — ${item.ciudad}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function publicarResena(e) {
+            e.preventDefault();
+            const nombre = document.getElementById("res-nombre").value.trim();
+            const ciudad = document.getElementById("res-ciudad").value;
+            const producto = document.getElementById("res-producto").value;
+            const estrellas = parseInt(document.getElementById("res-estrellas").value, 10);
+            const comentario = document.getElementById("res-comentario").value.trim();
+
+            resenasTienda.unshift({
+                nombre,
+                ciudad,
+                producto,
+                estrellas,
+                comentario
+            });
+
+            renderizarResenas();
+            e.target.reset();
+            alert("¡Reseña publicada en la tienda!");
+        }
+
+        function renderizarGrid(lista) {
+            const container = document.getElementById("container-productos");
+            container.innerHTML = "";
+
+            if (lista.length === 0) {
+                container.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-muted); padding:40px; font-weight:700;">No hay productos que coincidan con el filtro.</p>`;
+                return;
+            }
+
+            lista.forEach((prod) => {
+                const tieneDescuento = prod.descuentoPct > 0;
+                const badgeOff = tieneDescuento ? `<span class="badge-off">-${prod.descuentoPct}% OFF</span>` : "";
+                const strikePrice = tieneDescuento ? `<span class="price-strike">$${prod.precioOriginal.toLocaleString("es-CO")}</span>` : "";
+
+                const card = document.createElement("article");
+                card.className = "product-card";
+                card.innerHTML = `
+                    <div>
+                        <div class="bag-stage">
+                            <span class="badge-id">${prod.id}</span>
+                            ${badgeOff}
+                            <div class="bag-real">
+                                <div class="bag-valve"></div>
+                                <div class="bag-label">
+                                    <div class="bag-label-brand">Café para Siempre</div>
+                                    <div class="bag-label-var">${prod.variedad} • ${prod.peso}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-body">
+                            <div class="product-title">${prod.nombre}</div>
+                            <div class="rating-line">★ ${prod.rating}</div>
+                            <div class="specs-list">
+                                <div><span>Variedad:</span><span>${prod.variedad}</span></div>
+                                <div><span>Presentación:</span><span>${prod.peso}</span></div>
+                                <div><span>Origen:</span><span>${prod.altitud}</span></div>
+                                <div><span>Notas:</span><span>${prod.notas}</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-footer">
+                        <div class="price-stack">
+                            <span class="price-main">$${prod.precioOferta.toLocaleString("es-CO")}</span>
+                            ${strikePrice}
+                        </div>
+                        <button type="button" class="btn-add-cart" onclick="agregarAlCarrito('${prod.id}')">
+                            Agregar
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filtrarCategoria(cat, btn) {
+            categoriaActual = cat;
+            document.querySelectorAll(".cat-btn").forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            ejecutarFiltros();
+        }
+
+        function ejecutarFiltros() {
+            const texto = document.getElementById("input-buscar").value.trim().toLowerCase();
+            const variedad = document.getElementById("sel-variedad").value;
+            const oferta = document.getElementById("sel-oferta").value;
+            const orden = document.getElementById("sel-orden").value;
+
+            let filtrados = PRODUCTOS_TIENDA.filter((p) => {
+                const matchCat = categoriaActual === "todos" || p.categoria === categoriaActual;
+                const matchVar = variedad === "todos" || p.variedad === variedad;
+                const matchOferta = oferta === "todos" || p.descuentoPct > 0;
+                const matchText =
+                    p.nombre.toLowerCase().includes(texto) ||
+                    p.variedad.toLowerCase().includes(texto) ||
+                    p.notas.toLowerCase().includes(texto) ||
+                    p.peso.toLowerCase().includes(texto);
+                return matchCat && matchVar && matchOferta && matchText;
+            });
+
+            if (orden === "precio-bajo") filtrados.sort((a, b) => a.precioOferta - b.precioOferta);
+            if (orden === "precio-alto") filtrados.sort((a, b) => b.precioOferta - a.precioOferta);
+            if (orden === "mayor-descuento") filtrados.sort((a, b) => b.descuentoPct - a.descuentoPct);
+
+            renderizarGrid(filtrados);
+        }
+
+        function agregarAlCarrito(id) {
+            const prod = PRODUCTOS_TIENDA.find((p) => p.id === id);
+            if (!prod) return;
+
+            const existente = carrito.find((item) => item.id === id);
+            if (existente) {
+                existente.cantidad += 1;
+            } else {
+                carrito.push({ ...prod, cantidad: 1 });
+            }
+
+            actualizarCarritoUI();
+            toggleCartDrawer(true);
+        }
+
+        function cambiarCantidad(index, delta) {
+            carrito[index].cantidad += delta;
+            if (carrito[index].cantidad <= 0) {
+                carrito.splice(index, 1);
+            }
+            actualizarCarritoUI();
+        }
+
+        function actualizarCarritoUI() {
+            const container = document.getElementById("cart-list-container");
+            const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            document.getElementById("badge-cart-count").innerText = totalItems;
+
+            if (carrito.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:var(--text-muted); margin-top:45px; font-weight:600;">Tu carrito está vacío.</p>`;
+                document.getElementById("val-subtotal").innerText = "$0";
+                document.getElementById("val-ahorro").innerText = "$0";
+                document.getElementById("val-envio-monto").innerText = "$12.000";
+                document.getElementById("val-total").innerText = "$0";
+                document.getElementById("chk-total-badge").innerText = "$0";
+                return;
+            }
+
+            container.innerHTML = "";
+            let subtotal = 0;
+            let ahorroTotal = 0;
+
+            carrito.forEach((item, idx) => {
+                const lineSubtotal = item.precioOferta * item.cantidad;
+                const lineAhorro = (item.precioOriginal - item.precioOferta) * item.cantidad;
+                subtotal += lineSubtotal;
+                ahorroTotal += lineAhorro;
+
+                const row = document.createElement("div");
+                row.className = "cart-item-row";
+                row.innerHTML = `
+                    <div>
+                        <div style="font-weight:800; font-size:0.88rem; color:var(--text-main);">${item.nombre} (${item.peso})</div>
+                        <div style="font-size:0.8rem; font-weight:700; color:var(--green-leaf);">$${lineSubtotal.toLocaleString("es-CO")}</div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <button type="button" style="border:1px solid var(--border-color); background:var(--surface-subtle); color:var(--text-main); width:26px; height:26px; border-radius:6px; font-weight:800; cursor:pointer;" onclick="cambiarCantidad(${idx}, -1)">-</button>
+                        <span style="font-weight:800; font-size:0.86rem;">${item.cantidad}</span>
+                        <button type="button" style="border:1px solid var(--border-color); background:var(--surface-subtle); color:var(--text-main); width:26px; height:26px; border-radius:6px; font-weight:800; cursor:pointer;" onclick="cambiarCantidad(${idx}, 1)">+</button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            const envio = subtotal >= 100000 ? 0 : 12000;
+            const totalFinal = subtotal + envio;
+
+            document.getElementById("val-subtotal").innerText = `$${subtotal.toLocaleString("es-CO")}`;
+            document.getElementById("val-ahorro").innerText = `-$${ahorroTotal.toLocaleString("es-CO")}`;
+            document.getElementById("val-envio-monto").innerText = envio === 0 ? "Gratis" : `$${envio.toLocaleString("es-CO")}`;
+            document.getElementById("val-total").innerText = `$${totalFinal.toLocaleString("es-CO")}`;
+            document.getElementById("chk-total-badge").innerText = `$${totalFinal.toLocaleString("es-CO")}`;
+        }
+
+        function toggleCartDrawer(forceOpen = false) {
+            const drawer = document.getElementById("cart-drawer");
+            const overlay = document.getElementById("drawer-overlay");
+            if (forceOpen) {
+                drawer.classList.add("active");
+                overlay.classList.add("active");
+            } else {
+                drawer.classList.toggle("active");
+                overlay.classList.toggle("active");
+            }
+        }
+
+        function abrirCheckoutModal() {
+            if (carrito.length === 0) {
+                alert("Agrega al menos un producto al carrito.");
+                return;
+            }
+            toggleCartDrawer();
+            document.getElementById("modal-checkout").classList.add("active");
+        }
+
+        function cerrarCheckoutModal() {
+            document.getElementById("modal-checkout").classList.remove("active");
+        }
+
+        function confirmarPedidoFinal(e) {
+            e.preventDefault();
+            alert("¡Pedido confirmado! Gracias por comprar en Café para Siempre.");
+            carrito = [];
+            actualizarCarritoUI();
+            cerrarCheckoutModal();
+        }
+
+        function cerrarSesion() {
+            localStorage.removeItem("usuarioActivo");
+            localStorage.removeItem("rolUsuario");
+        }
+    </script>
+</body>
+</html>
